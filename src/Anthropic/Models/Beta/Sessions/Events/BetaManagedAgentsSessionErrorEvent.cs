@@ -44,7 +44,7 @@ public sealed record class BetaManagedAgentsSessionErrorEvent : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// Timestamp when the error occurred.
     /// </summary>
     public required System::DateTimeOffset ProcessedAt
     {

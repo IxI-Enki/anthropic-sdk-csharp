@@ -36,7 +36,8 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// The resolved agent a `session_thread` runs.
+    /// Resolved agent definition for this thread. Snapshot of the agent at thread
+    /// creation time.
     /// </summary>
     public required Agent Agent
     {
@@ -49,7 +50,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the thread was archived. Null if not archived.
     /// </summary>
     public required System::DateTimeOffset? ArchivedAt
     {
@@ -62,7 +63,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the thread was created.
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
@@ -101,7 +102,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// Timing statistics for a session thread.
+    /// Timing statistics for this thread. Null until the thread's first status transition.
     /// </summary>
     public required BetaManagedAgentsSessionThreadStats? Stats
     {
@@ -114,7 +115,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// SessionThreadStatus enum
+    /// Current execution status of the thread.
     /// </summary>
     public required ApiEnum<string, BetaManagedAgentsSessionThreadStatus> Status
     {
@@ -141,7 +142,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the thread was last updated.
     /// </summary>
     public required System::DateTimeOffset UpdatedAt
     {
@@ -154,7 +155,7 @@ public sealed record class BetaManagedAgentsSessionThread : JsonModel
     }
 
     /// <summary>
-    /// Cumulative token usage for a session thread across all turns.
+    /// Cumulative token usage for this thread. Null until the thread's first idle transition.
     /// </summary>
     public required BetaManagedAgentsSessionThreadUsage? Usage
     {
@@ -223,7 +224,7 @@ class BetaManagedAgentsSessionThreadFromRaw : IFromRawJson<BetaManagedAgentsSess
 }
 
 /// <summary>
-/// The resolved agent a `session_thread` runs.
+/// Resolved agent definition for this thread. Snapshot of the agent at thread creation time.
 /// </summary>
 [JsonConverter(typeof(AgentConverter))]
 public record class Agent : ModelBase

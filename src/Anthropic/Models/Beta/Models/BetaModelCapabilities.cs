@@ -53,8 +53,8 @@ public sealed record class BetaModelCapabilities : JsonModel
     }
 
     /// <summary>
-    /// Compaction capability details: whether the model accepts the top-level `compaction`
-    /// request parameter, with one entry per supported `compaction.type` value.
+    /// Server-side compaction support (the top-level `compaction` parameter) and
+    /// the accepted `compaction.type` values.
     /// </summary>
     public required BetaCompactionCapability? Compaction
     {

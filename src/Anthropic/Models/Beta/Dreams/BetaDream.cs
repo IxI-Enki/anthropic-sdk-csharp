@@ -39,7 +39,7 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the dream was archived, in RFC 3339, or `null` if it hasn't been archived.
     /// </summary>
     public required System::DateTimeOffset? ArchivedAt
     {
@@ -52,7 +52,9 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the dream was created, in RFC 3339.
+    ///
+    /// <para>Lists of dreams are sorted by this time, newest first.</para>
     /// </summary>
     public required System::DateTimeOffset CreatedAt
     {
@@ -65,7 +67,8 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the dream reached `completed`, `failed`, or `canceled`, in RFC 3339,
+    /// or `null` if it is still `pending` or `running`.
     /// </summary>
     public required System::DateTimeOffset? EndedAt
     {
@@ -78,7 +81,7 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// Failure detail for a Dream whose `status` is `failed`.
+    /// Why the dream failed, or `null` if `status` isn't `failed`.
     /// </summary>
     public required BetaDreamError? Error
     {
@@ -139,8 +142,8 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// Which memory store a dream writes its result to. Defaults to `create_new`
-    /// when left out of a create request.
+    /// Where the dream writes its result, as set in the request that created the
+    /// dream. If that request left out `output_behavior`, the dream used the `create_new` behavior.
     /// </summary>
     public required BetaOutputBehavior OutputBehavior
     {
@@ -231,14 +234,8 @@ public sealed record class BetaDream : JsonModel
     }
 
     /// <summary>
-    /// The tokens that a dream has used so far.
-    ///
-    /// <para>The counts are zero while the dream is `pending` and update while it
-    /// is `running`. They can keep changing after a cancel.</para>
-    ///
-    /// <para>See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams#billing)
-    /// for how dreams are billed. See the [prompt caching guide](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#tracking-cache-performance)
-    /// for how the input token counts add up.</para>
+    /// The dream's token counts, which stop changing once its `status` is `completed`
+    /// or `failed`. After a cancel, they can keep changing.
     /// </summary>
     public required BetaDreamUsage Usage
     {

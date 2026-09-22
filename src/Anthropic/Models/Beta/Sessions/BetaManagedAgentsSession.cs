@@ -44,7 +44,7 @@ public sealed record class BetaManagedAgentsSession : JsonModel
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When the session was archived. Null if not archived.
     /// </summary>
     public required System::DateTimeOffset? ArchivedAt
     {
@@ -57,8 +57,7 @@ public sealed record class BetaManagedAgentsSession : JsonModel
     }
 
     /// <summary>
-    /// A hard spend ceiling. The session stops issuing new model requests once the
-    /// tracked list cost reaches `max_list_cost`.
+    /// The session's enforced spend ceiling, or null when no budget is set.
     /// </summary>
     public required BetaManagedAgentsBudgetLimit? Budget
     {
@@ -150,7 +149,7 @@ public sealed record class BetaManagedAgentsSession : JsonModel
     }
 
     /// <summary>
-    /// Timing statistics for a session.
+    /// Timing statistics for the session.
     /// </summary>
     public required BetaManagedAgentsSessionStats Stats
     {
@@ -213,7 +212,7 @@ public sealed record class BetaManagedAgentsSession : JsonModel
     }
 
     /// <summary>
-    /// Cumulative token usage for a session across all turns.
+    /// Cumulative token usage for the session.
     /// </summary>
     public required BetaManagedAgentsSessionUsage Usage
     {

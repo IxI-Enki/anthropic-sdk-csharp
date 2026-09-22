@@ -31,11 +31,7 @@ public record class UserProfileUpdateParams : ParamsBase
     public string? UserProfileID { get; init; }
 
     /// <summary>
-    /// How the platform uses the API on behalf of the entity this profile represents.
-    /// `application`: the platform sells a product that uses the API behind the
-    /// scenes, and the profile represents an individual end-user of that product.
-    /// `passthrough`: the platform resells raw inference, and the profile identifies
-    /// the resold-to company.
+    /// If present, replaces the stored access type. Omit to leave unchanged.
     /// </summary>
     public ApiEnum<string, UserProfileUpdateParamsAccessType>? AccessType
     {
@@ -91,7 +87,11 @@ public record class UserProfileUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// If present, replaces the stored account creation time. Omit to leave unchanged;
+    /// once set, the value cannot be cleared and `null` is rejected. Must be a complete
+    /// RFC 3339 timestamp no more than 1 minute in the future. Accepted under the
+    /// `user-profiles-2026-08-18` beta header; under `user-profiles-2026-09-04`
+    /// send `external_user_details.onboarded_at` instead.
     /// </summary>
     public System::DateTimeOffset? ExternalUserOnboardedAt
     {
@@ -332,10 +332,7 @@ public record class UserProfileUpdateParams : ParamsBase
 }
 
 /// <summary>
-/// How the platform uses the API on behalf of the entity this profile represents.
-/// `application`: the platform sells a product that uses the API behind the scenes,
-/// and the profile represents an individual end-user of that product. `passthrough`:
-/// the platform resells raw inference, and the profile identifies the resold-to company.
+/// If present, replaces the stored access type. Omit to leave unchanged.
 /// </summary>
 [JsonConverter(typeof(UserProfileUpdateParamsAccessTypeConverter))]
 public enum UserProfileUpdateParamsAccessType

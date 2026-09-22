@@ -19,7 +19,7 @@ namespace Anthropic.Models.Beta.UserProfiles;
 public sealed record class BetaUserProfileEnrollmentUrl : JsonModel
 {
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// When this enrollment URL expires, in RFC 3339 format.
     /// </summary>
     public required System::DateTimeOffset ExpiresAt
     {
