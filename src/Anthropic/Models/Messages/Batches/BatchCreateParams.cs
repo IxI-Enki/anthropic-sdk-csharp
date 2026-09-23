@@ -435,6 +435,21 @@ public sealed record class Params : JsonModel
     }
 
     /// <summary>
+    /// Request-level diagnostics. Supply `previous_message_id` to have the response
+    /// include `diagnostics.cache_miss_reason` explaining any prompt-cache divergence
+    /// from that prior request.
+    /// </summary>
+    public DiagnosticsParam? Diagnostics
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DiagnosticsParam>("diagnostics");
+        }
+        init { this._rawData.Set("diagnostics", value); }
+    }
+
+    /// <summary>
     /// Specifies the geographic region for inference processing. If not specified,
     /// the workspace's `default_inference_geo` is used.
     /// </summary>
@@ -817,6 +832,7 @@ public sealed record class Params : JsonModel
         this.Model.Raw();
         this.CacheControl?.Validate();
         this.Container?.Validate();
+        this.Diagnostics?.Validate();
         _ = this.InferenceGeo;
         this.Metadata?.Validate();
         this.OutputConfig?.Validate();

@@ -1,17 +1,17 @@
 using System.Text.Json;
 using Anthropic.Core;
-using Anthropic.Models.Beta.Messages;
+using Anthropic.Models.Messages;
 
-namespace Anthropic.Tests.Models.Beta.Messages;
+namespace Anthropic.Tests.Models.Messages;
 
-public class BetaDiagnosticsTest : TestBase
+public class DiagnosticsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BetaDiagnostics { CacheMissReason = new BetaCacheMissModelChanged(0) };
+        var model = new Diagnostics { CacheMissReason = new CacheMissModelChanged(0) };
 
-        BetaCacheMissReason expectedCacheMissReason = new BetaCacheMissModelChanged(0);
+        CacheMissReason expectedCacheMissReason = new CacheMissModelChanged(0);
 
         Assert.Equal(expectedCacheMissReason, model.CacheMissReason);
     }
@@ -19,10 +19,10 @@ public class BetaDiagnosticsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BetaDiagnostics { CacheMissReason = new BetaCacheMissModelChanged(0) };
+        var model = new Diagnostics { CacheMissReason = new CacheMissModelChanged(0) };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaDiagnostics>(
+        var deserialized = JsonSerializer.Deserialize<Diagnostics>(
             json,
             ModelBase.SerializerOptions
         );
@@ -33,16 +33,16 @@ public class BetaDiagnosticsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BetaDiagnostics { CacheMissReason = new BetaCacheMissModelChanged(0) };
+        var model = new Diagnostics { CacheMissReason = new CacheMissModelChanged(0) };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaDiagnostics>(
+        var deserialized = JsonSerializer.Deserialize<Diagnostics>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        BetaCacheMissReason expectedCacheMissReason = new BetaCacheMissModelChanged(0);
+        CacheMissReason expectedCacheMissReason = new CacheMissModelChanged(0);
 
         Assert.Equal(expectedCacheMissReason, deserialized.CacheMissReason);
     }
@@ -50,7 +50,7 @@ public class BetaDiagnosticsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BetaDiagnostics { CacheMissReason = new BetaCacheMissModelChanged(0) };
+        var model = new Diagnostics { CacheMissReason = new CacheMissModelChanged(0) };
 
         model.Validate();
     }
@@ -58,9 +58,9 @@ public class BetaDiagnosticsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new BetaDiagnostics { CacheMissReason = new BetaCacheMissModelChanged(0) };
+        var model = new Diagnostics { CacheMissReason = new CacheMissModelChanged(0) };
 
-        BetaDiagnostics copied = new(model);
+        Diagnostics copied = new(model);
 
         Assert.Equal(model, copied);
     }

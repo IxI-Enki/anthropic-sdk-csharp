@@ -58,7 +58,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -159,7 +159,7 @@ public class BetaMessageTest : TestBase
             ]
         );
         Messages::BetaDiagnostics expectedDiagnostics = new(
-            new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+            new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
         );
         ApiEnum<string, Model> expectedModel = Model.ClaudeOpus5;
         JsonElement expectedRole = JsonSerializer.SerializeToElement("assistant");
@@ -288,7 +288,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -403,7 +403,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -511,7 +511,7 @@ public class BetaMessageTest : TestBase
             ]
         );
         Messages::BetaDiagnostics expectedDiagnostics = new(
-            new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+            new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
         );
         ApiEnum<string, Model> expectedModel = Model.ClaudeOpus5;
         JsonElement expectedRole = JsonSerializer.SerializeToElement("assistant");
@@ -640,7 +640,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -749,7 +749,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -850,7 +850,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -950,7 +950,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -1053,7 +1053,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -1155,7 +1155,7 @@ public class BetaMessageTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()

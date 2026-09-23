@@ -62,7 +62,9 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                         ]
                     ),
                     Diagnostics = new(
-                        new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                        new Messages::BetaCacheMissReason(
+                            new Messages::BetaCacheMissModelChanged(0)
+                        )
                     ),
                     Model = Model.ClaudeOpus5,
                     StopDetails = new()
@@ -173,7 +175,7 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -292,7 +294,9 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                         ]
                     ),
                     Diagnostics = new(
-                        new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                        new Messages::BetaCacheMissReason(
+                            new Messages::BetaCacheMissModelChanged(0)
+                        )
                     ),
                     Model = Model.ClaudeOpus5,
                     StopDetails = new()
@@ -417,7 +421,9 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                         ]
                     ),
                     Diagnostics = new(
-                        new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                        new Messages::BetaCacheMissReason(
+                            new Messages::BetaCacheMissModelChanged(0)
+                        )
                     ),
                     Model = Model.ClaudeOpus5,
                     StopDetails = new()
@@ -535,7 +541,7 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -654,7 +660,9 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                         ]
                     ),
                     Diagnostics = new(
-                        new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                        new Messages::BetaCacheMissReason(
+                            new Messages::BetaCacheMissModelChanged(0)
+                        )
                     ),
                     Model = Model.ClaudeOpus5,
                     StopDetails = new()
@@ -773,7 +781,9 @@ public class BetaMessageBatchIndividualResponseTest : TestBase
                         ]
                     ),
                     Diagnostics = new(
-                        new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                        new Messages::BetaCacheMissReason(
+                            new Messages::BetaCacheMissModelChanged(0)
+                        )
                     ),
                     Model = Model.ClaudeOpus5,
                     StopDetails = new()

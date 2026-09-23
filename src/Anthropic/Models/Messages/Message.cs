@@ -81,6 +81,20 @@ public sealed record class Message : JsonModel
     }
 
     /// <summary>
+    /// Request-level diagnostics. `null` when the request did not supply `diagnostics`,
+    /// or when it did and no prompt-cache divergence was detected.
+    /// </summary>
+    public required Diagnostics? Diagnostics
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Diagnostics>("diagnostics");
+        }
+        init { this._rawData.Set("diagnostics", value); }
+    }
+
+    /// <summary>
     /// The model that will complete your prompt.
     ///
     /// <para>See [models](https://docs.anthropic.com/en/docs/models-overview) for
@@ -218,6 +232,7 @@ public sealed record class Message : JsonModel
         {
             item.Validate();
         }
+        this.Diagnostics?.Validate();
         this.Model.Raw();
         if (!JsonElement.DeepEquals(this.Role, JsonSerializer.SerializeToElement("assistant")))
         {
