@@ -398,6 +398,13 @@ public class ThinkingTest : TestBase
     }
 
     [Fact]
+    public void BetweenToolsValidationWorks()
+    {
+        Thinking value = new BetweenTools();
+        value.Validate();
+    }
+
+    [Fact]
     public void BetaThinkingConfigAdaptiveValidationWorks()
     {
         Thinking value = new BetaThinkingConfigAdaptive()
@@ -436,6 +443,19 @@ public class ThinkingTest : TestBase
     public void BetaThinkingConfigDisabledSerializationRoundtripWorks()
     {
         Thinking value = new BetaThinkingConfigDisabled();
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Thinking>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void BetweenToolsSerializationRoundtripWorks()
+    {
+        Thinking value = new BetweenTools();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Thinking>(
             element,
@@ -488,12 +508,13 @@ public class ThinkingTest : TestBase
             PrefixMismatchBehavior = BetaThinkingPrefixMismatchBehavior.Error,
         };
 
-        Assert.True(JsonElement.DeepEquals(expectedType, value.Type));
+        Assert.NotNull(value.Type);
+        Assert.True(JsonElement.DeepEquals(expectedType, value.Type.Value));
         Assert.Equal(expectedBlockBinding, value.BlockBinding);
 
         Thinking emptyValue = new(JsonSerializer.Deserialize<JsonElement>("{}"));
 
-        Assert.Throws<AnthropicInvalidDataException>(() => emptyValue.Type);
+        Assert.Null(emptyValue.Type);
         Assert.Null(emptyValue.BlockBinding);
 
         Thinking mismatchedValue = new(
@@ -509,5 +530,96 @@ public class ThinkingTest : TestBase
         );
 
         Assert.Null(mismatchedValue.BlockBinding);
+    }
+}
+
+public class BetweenToolsTest : TestBase
+{
+    [Fact]
+    public void DefaultValidation_Works()
+    {
+        var constant = new BetweenTools();
+        constant.Validate();
+    }
+
+    [Fact]
+    public void ValidConstantValidation_Works()
+    {
+        var constant = JsonSerializer.Deserialize<BetweenTools>(
+            JsonSerializer.Deserialize<JsonElement>(
+                """
+                {
+                  "type": "between_tools"
+                }
+                """
+            ),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(constant);
+        constant.Validate();
+    }
+
+    [Fact]
+    public void InvalidConstantValidationThrows_Works()
+    {
+        var constant = JsonSerializer.Deserialize<BetweenTools>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(constant);
+        Assert.Throws<AnthropicInvalidDataException>(() => constant.Validate());
+    }
+
+    [Fact]
+    public void DefaultRoundtrip_Works()
+    {
+        var constant = new BetweenTools();
+        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(constant, deserialized);
+    }
+
+    [Fact]
+    public void ValidConstantRoundtrip_Works()
+    {
+        var constant = JsonSerializer.Deserialize<BetweenTools>(
+            JsonSerializer.Deserialize<JsonElement>(
+                """
+                {
+                  "type": "between_tools"
+                }
+                """
+            ),
+            ModelBase.SerializerOptions
+        );
+        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(constant, deserialized);
+    }
+
+    [Fact]
+    public void InvalidConstantRoundtrip_Works()
+    {
+        var constant = JsonSerializer.Deserialize<BetweenTools>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(constant, deserialized);
     }
 }
