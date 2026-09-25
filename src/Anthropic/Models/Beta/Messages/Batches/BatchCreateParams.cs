@@ -741,10 +741,13 @@ public sealed record class Params : JsonModel
     }
 
     /// <summary>
-    /// Whether to incrementally stream the response using server-sent events.
+    /// Whether to incrementally stream the response using server-sent events. When
+    /// `true`, SDKs return a raw event stream.
     ///
-    /// <para>See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)
-    /// for details.</para>
+    /// <para>In the TypeScript, Python and Ruby SDKs, the recommended way to stream
+    /// is `messages.stream()`. It sets `stream` for you and accumulates the events
+    /// into the final message. See [Streaming with SDKs](https://platform.claude.com/docs/en/build-with-claude/streaming#streaming-with-sdks)
+    /// for an example in each language.</para>
     /// </summary>
     public bool? Stream
     {
