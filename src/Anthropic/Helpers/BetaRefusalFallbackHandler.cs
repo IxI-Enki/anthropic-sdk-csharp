@@ -36,7 +36,8 @@ namespace Anthropic.Helpers;
 /// block indices, and per-hop <c>usage.iterations</c> on the final <c>message_delta</c>. Only
 /// <c>model</c> is honored from each entry on this path: the credit token is redeemable only
 /// against the refused request's body, so the other per-entry overrides (<c>max_tokens</c>,
-/// <c>thinking</c>, ...) would be rejected.</para>
+/// <c>thinking</c>, ...) would be rejected. A carried <c>between_tools</c> thinking config is
+/// still sent as <c>disabled</c>, since the fallback model may not accept it.</para>
 ///
 /// <para>The handler sends the fallback-credit beta by default on every request it handles,
 /// including the original, since a refusal carries a <c>fallback_credit_token</c> only when the

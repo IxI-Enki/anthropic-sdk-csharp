@@ -121,6 +121,62 @@ public class BetaRefusalFallbackHandlerStreamingTest
     }
 
     [Fact]
+    public async Task DegradesBetweenToolsThinkingToDisabledOnTheHop()
+    {
+        var transport = new FakeTransport().EnqueueSse(StreamA).EnqueueSse(StreamB);
+        using var invoker = Intercepted(transport, FallbackModel);
+
+        var body = StreamingBody();
+        body["thinking"] = new JsonObject { ["type"] = "between_tools" };
+
+        using var _ = BetaFallbackState.Create().Use();
+        var response = await invoker.SendAsync(
+            StreamingRequest(body),
+            TestContext.Current.CancellationToken
+        );
+        await ReadBody(response);
+
+        Assert.Equal(2, transport.RequestCount);
+        Assert.True(JsonNode.DeepEquals(body["thinking"], transport.JsonBodies[0]["thinking"]));
+        Assert.True(
+            JsonNode.DeepEquals(
+                new JsonObject { ["type"] = "disabled" },
+                transport.JsonBodies[1]["thinking"]
+            )
+        );
+    }
+
+    [Fact]
+    public async Task DegradesBetweenToolsThinkingOnTheHopEvenWhenTheEntrySetsThinking()
+    {
+        var transport = new FakeTransport().EnqueueSse(StreamA).EnqueueSse(StreamB);
+        var handler = new BetaRefusalFallbackHandler
+        {
+            Fallbacks = [new BetaFallbackParam(FallbackModel) { Thinking = new BetweenTools() }],
+            InnerHandler = transport,
+        };
+        using HttpMessageInvoker invoker = new(handler);
+
+        var body = StreamingBody();
+        body["thinking"] = new JsonObject { ["type"] = "between_tools" };
+
+        using var _ = BetaFallbackState.Create().Use();
+        var response = await invoker.SendAsync(
+            StreamingRequest(body),
+            TestContext.Current.CancellationToken
+        );
+        await ReadBody(response);
+
+        Assert.Equal(2, transport.RequestCount);
+        Assert.True(
+            JsonNode.DeepEquals(
+                new JsonObject { ["type"] = "disabled" },
+                transport.JsonBodies[1]["thinking"]
+            )
+        );
+    }
+
+    [Fact]
     public async Task AppendsTheFallbackCreditBetaToTheOriginalAndHopRequests()
     {
         var transport = new FakeTransport().EnqueueSse(StreamA).EnqueueSse(StreamB);
@@ -1221,11 +1277,11 @@ public class BetaRefusalFallbackHandlerStreamingTest
             ["stream"] = true,
         };
 
-    static HttpRequestMessage StreamingRequest() =>
+    static HttpRequestMessage StreamingRequest(JsonObject? body = null) =>
         new(HttpMethod.Post, "https://api.example.com/v1/messages?beta=true")
         {
             Content = new StringContent(
-                StreamingBody().ToJsonString(),
+                (body ?? StreamingBody()).ToJsonString(),
                 Encoding.UTF8,
                 "application/json"
             ),
