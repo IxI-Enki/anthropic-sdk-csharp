@@ -56,7 +56,7 @@ jobs:
         run: ./scripts/build
 
   test:
-    timeout-minutes: 10
+    timeout-minutes: 15
     name: test
     runs-on: ${{ github.repository == 'anthropics/anthropic-sdk-csharp' && 'windows-latest' || 'windows-latest-x64-16-core' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
