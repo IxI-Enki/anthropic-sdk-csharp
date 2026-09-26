@@ -333,7 +333,7 @@ public static class MultipartJsonSerializer
                 {
                     formDataContent.Add(content);
                 }
-                else if (fileName == null)
+                else if (string.IsNullOrEmpty(fileName))
                 {
                     formDataContent.Add(content, name);
                 }
