@@ -1,29 +1,28 @@
 using System.Text.Json;
 using Anthropic.Core;
 using Anthropic.Models.Beta.Messages;
-using Anthropic.Models.Messages;
 
 namespace Anthropic.Tests.Models.Beta.Messages;
 
-public class BetaFallbackInfoParamTest : TestBase
+public class BetaThinkingConfigBetweenToolsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BetaFallbackInfoParam { Model = Model.ClaudeSonnet5_5 };
+        var model = new BetaThinkingConfigBetweenTools { };
 
-        ApiEnum<string, Model> expectedModel = Model.ClaudeSonnet5_5;
+        JsonElement expectedType = JsonSerializer.SerializeToElement("between_tools");
 
-        Assert.Equal(expectedModel, model.Model);
+        Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BetaFallbackInfoParam { Model = Model.ClaudeSonnet5_5 };
+        var model = new BetaThinkingConfigBetweenTools { };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaFallbackInfoParam>(
+        var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigBetweenTools>(
             json,
             ModelBase.SerializerOptions
         );
@@ -34,24 +33,24 @@ public class BetaFallbackInfoParamTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BetaFallbackInfoParam { Model = Model.ClaudeSonnet5_5 };
+        var model = new BetaThinkingConfigBetweenTools { };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaFallbackInfoParam>(
+        var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigBetweenTools>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Model> expectedModel = Model.ClaudeSonnet5_5;
+        JsonElement expectedType = JsonSerializer.SerializeToElement("between_tools");
 
-        Assert.Equal(expectedModel, deserialized.Model);
+        Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new BetaFallbackInfoParam { Model = Model.ClaudeSonnet5_5 };
+        var model = new BetaThinkingConfigBetweenTools { };
 
         model.Validate();
     }
@@ -59,9 +58,9 @@ public class BetaFallbackInfoParamTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new BetaFallbackInfoParam { Model = Model.ClaudeSonnet5_5 };
+        var model = new BetaThinkingConfigBetweenTools { };
 
-        BetaFallbackInfoParam copied = new(model);
+        BetaThinkingConfigBetweenTools copied = new(model);
 
         Assert.Equal(model, copied);
     }

@@ -32,7 +32,7 @@ public class BetaThinkingConfigParamTest : TestBase
     [Fact]
     public void BetweenToolsValidationWorks()
     {
-        BetaThinkingConfigParam value = new BetaThinkingConfigParamBetweenTools();
+        BetaThinkingConfigParam value = new BetaThinkingConfigBetweenTools();
         value.Validate();
     }
 
@@ -87,7 +87,7 @@ public class BetaThinkingConfigParamTest : TestBase
     [Fact]
     public void BetweenToolsSerializationRoundtripWorks()
     {
-        BetaThinkingConfigParam value = new BetaThinkingConfigParamBetweenTools();
+        BetaThinkingConfigParam value = new BetaThinkingConfigBetweenTools();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigParam>(
             element,
@@ -140,13 +140,12 @@ public class BetaThinkingConfigParamTest : TestBase
             PrefixMismatchBehavior = BetaThinkingPrefixMismatchBehavior.Error,
         };
 
-        Assert.NotNull(value.Type);
-        Assert.True(JsonElement.DeepEquals(expectedType, value.Type.Value));
+        Assert.True(JsonElement.DeepEquals(expectedType, value.Type));
         Assert.Equal(expectedBlockBinding, value.BlockBinding);
 
         BetaThinkingConfigParam emptyValue = new(JsonSerializer.Deserialize<JsonElement>("{}"));
 
-        Assert.Null(emptyValue.Type);
+        Assert.Throws<AnthropicInvalidDataException>(() => emptyValue.Type);
         Assert.Null(emptyValue.BlockBinding);
 
         BetaThinkingConfigParam mismatchedValue = new(
@@ -162,96 +161,5 @@ public class BetaThinkingConfigParamTest : TestBase
         );
 
         Assert.Null(mismatchedValue.BlockBinding);
-    }
-}
-
-public class BetaThinkingConfigParamBetweenToolsTest : TestBase
-{
-    [Fact]
-    public void DefaultValidation_Works()
-    {
-        var constant = new BetaThinkingConfigParamBetweenTools();
-        constant.Validate();
-    }
-
-    [Fact]
-    public void ValidConstantValidation_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        constant.Validate();
-    }
-
-    [Fact]
-    public void InvalidConstantValidationThrows_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        Assert.Throws<AnthropicInvalidDataException>(() => constant.Validate());
-    }
-
-    [Fact]
-    public void DefaultRoundtrip_Works()
-    {
-        var constant = new BetaThinkingConfigParamBetweenTools();
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void ValidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void InvalidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
     }
 }

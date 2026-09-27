@@ -35,7 +35,7 @@ public record class BetaThinkingConfigParam : ModelBase
         }
     }
 
-    public JsonElement? Type
+    public JsonElement Type
     {
         get
         {
@@ -43,12 +43,9 @@ public record class BetaThinkingConfigParam : ModelBase
             {
                 BetaThinkingConfigEnabled x => x.Type,
                 BetaThinkingConfigDisabled x => x.Type,
-                BetaThinkingConfigParamBetweenTools _ => null,
+                BetaThinkingConfigBetweenTools x => x.Type,
                 BetaThinkingConfigAdaptive x => x.Type,
-                _ => WrappedJsonSerializer.GetNullableStructProperty<JsonElement>(
-                    this.Json,
-                    "type"
-                ),
+                _ => WrappedJsonSerializer.GetNotNullStructProperty<JsonElement>(this.Json, "type"),
             };
         }
     }
@@ -61,7 +58,7 @@ public record class BetaThinkingConfigParam : ModelBase
             {
                 BetaThinkingConfigEnabled x => x.BlockBinding,
                 BetaThinkingConfigDisabled _ => null,
-                BetaThinkingConfigParamBetweenTools _ => null,
+                BetaThinkingConfigBetweenTools _ => null,
                 BetaThinkingConfigAdaptive x => x.BlockBinding,
                 _ => WrappedJsonSerializer.GetNullableClassProperty<BetaThinkingBlockBinding>(
                     this.Json,
@@ -84,7 +81,7 @@ public record class BetaThinkingConfigParam : ModelBase
     }
 
     public BetaThinkingConfigParam(
-        BetaThinkingConfigParamBetweenTools value,
+        BetaThinkingConfigBetweenTools value,
         JsonElement? element = null
     )
     {
@@ -147,24 +144,22 @@ public record class BetaThinkingConfigParam : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="BetaThinkingConfigParamBetweenTools"/>.
+    /// type <see cref="BetaThinkingConfigBetweenTools"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickBetweenTools(out var value)) {
-    ///     // `value` is of type `BetaThinkingConfigParamBetweenTools`
+    ///     // `value` is of type `BetaThinkingConfigBetweenTools`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickBetweenTools(
-        [NotNullWhen(true)] out BetaThinkingConfigParamBetweenTools? value
-    )
+    public bool TryPickBetweenTools([NotNullWhen(true)] out BetaThinkingConfigBetweenTools? value)
     {
-        value = this.Value as BetaThinkingConfigParamBetweenTools;
+        value = this.Value as BetaThinkingConfigBetweenTools;
         return value != null;
     }
 
@@ -205,7 +200,7 @@ public record class BetaThinkingConfigParam : ModelBase
     /// instance.Switch(
     ///     (BetaThinkingConfigEnabled value) =&gt; {...},
     ///     (BetaThinkingConfigDisabled value) =&gt; {...},
-    ///     (BetaThinkingConfigParamBetweenTools value) =&gt; {...},
+    ///     (BetaThinkingConfigBetweenTools value) =&gt; {...},
     ///     (BetaThinkingConfigAdaptive value) =&gt; {...}
     /// );
     /// </code>
@@ -214,7 +209,7 @@ public record class BetaThinkingConfigParam : ModelBase
     public void Switch(
         System::Action<BetaThinkingConfigEnabled> enabled,
         System::Action<BetaThinkingConfigDisabled> disabled,
-        System::Action<BetaThinkingConfigParamBetweenTools> betweenTools,
+        System::Action<BetaThinkingConfigBetweenTools> betweenTools,
         System::Action<BetaThinkingConfigAdaptive> adaptive
     )
     {
@@ -226,7 +221,7 @@ public record class BetaThinkingConfigParam : ModelBase
             case BetaThinkingConfigDisabled value:
                 disabled(value);
                 break;
-            case BetaThinkingConfigParamBetweenTools value:
+            case BetaThinkingConfigBetweenTools value:
                 betweenTools(value);
                 break;
             case BetaThinkingConfigAdaptive value:
@@ -256,7 +251,7 @@ public record class BetaThinkingConfigParam : ModelBase
     /// var result = instance.Match(
     ///     (BetaThinkingConfigEnabled value) =&gt; {...},
     ///     (BetaThinkingConfigDisabled value) =&gt; {...},
-    ///     (BetaThinkingConfigParamBetweenTools value) =&gt; {...},
+    ///     (BetaThinkingConfigBetweenTools value) =&gt; {...},
     ///     (BetaThinkingConfigAdaptive value) =&gt; {...}
     /// );
     /// </code>
@@ -265,7 +260,7 @@ public record class BetaThinkingConfigParam : ModelBase
     public T Match<T>(
         System::Func<BetaThinkingConfigEnabled, T> enabled,
         System::Func<BetaThinkingConfigDisabled, T> disabled,
-        System::Func<BetaThinkingConfigParamBetweenTools, T> betweenTools,
+        System::Func<BetaThinkingConfigBetweenTools, T> betweenTools,
         System::Func<BetaThinkingConfigAdaptive, T> adaptive
     )
     {
@@ -273,7 +268,7 @@ public record class BetaThinkingConfigParam : ModelBase
         {
             BetaThinkingConfigEnabled value => enabled(value),
             BetaThinkingConfigDisabled value => disabled(value),
-            BetaThinkingConfigParamBetweenTools value => betweenTools(value),
+            BetaThinkingConfigBetweenTools value => betweenTools(value),
             BetaThinkingConfigAdaptive value => adaptive(value),
             _ => throw new AnthropicInvalidDataException(
                 "Data did not match any variant of BetaThinkingConfigParam"
@@ -287,9 +282,8 @@ public record class BetaThinkingConfigParam : ModelBase
     public static implicit operator BetaThinkingConfigParam(BetaThinkingConfigDisabled value) =>
         new(value);
 
-    public static implicit operator BetaThinkingConfigParam(
-        BetaThinkingConfigParamBetweenTools value
-    ) => new(value);
+    public static implicit operator BetaThinkingConfigParam(BetaThinkingConfigBetweenTools value) =>
+        new(value);
 
     public static implicit operator BetaThinkingConfigParam(BetaThinkingConfigAdaptive value) =>
         new(value);
@@ -342,7 +336,7 @@ public record class BetaThinkingConfigParam : ModelBase
         {
             BetaThinkingConfigEnabled _ => 0,
             BetaThinkingConfigDisabled _ => 1,
-            BetaThinkingConfigParamBetweenTools _ => 2,
+            BetaThinkingConfigBetweenTools _ => 2,
             BetaThinkingConfigAdaptive _ => 3,
             _ => -1,
         };
@@ -414,11 +408,10 @@ sealed class BetaThinkingConfigParamConverter : JsonConverter<BetaThinkingConfig
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<BetaThinkingConfigParamBetweenTools>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigBetweenTools>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -465,83 +458,5 @@ sealed class BetaThinkingConfigParamConverter : JsonConverter<BetaThinkingConfig
     )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
-    }
-}
-
-[JsonConverter(typeof(BetaThinkingConfigParamBetweenToolsConverter))]
-public record class BetaThinkingConfigParamBetweenTools
-{
-    public JsonElement Element { get; private init; }
-
-    public BetaThinkingConfigParamBetweenTools()
-    {
-        Element = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "type": "between_tools"
-            }
-            """
-        );
-    }
-
-    internal BetaThinkingConfigParamBetweenTools(JsonElement element)
-    {
-        Element = element;
-    }
-
-    /// <summary>
-    /// Validates that the instance's underlying value is the expected constant.
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="AnthropicInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public void Validate()
-    {
-        if (this != new BetaThinkingConfigParamBetweenTools())
-        {
-            throw new AnthropicInvalidDataException(
-                "Invalid value given for 'BetaThinkingConfigParamBetweenTools'"
-            );
-        }
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public virtual bool Equals(BetaThinkingConfigParamBetweenTools? other)
-    {
-        if (other == null)
-        {
-            return false;
-        }
-
-        return JsonElement.DeepEquals(this.Element, other.Element);
-    }
-}
-
-class BetaThinkingConfigParamBetweenToolsConverter
-    : JsonConverter<BetaThinkingConfigParamBetweenTools>
-{
-    public override BetaThinkingConfigParamBetweenTools? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        BetaThinkingConfigParamBetweenTools value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(writer, value.Element, options);
     }
 }

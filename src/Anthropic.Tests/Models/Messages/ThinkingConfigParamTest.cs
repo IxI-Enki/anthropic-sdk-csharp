@@ -28,7 +28,7 @@ public class ThinkingConfigParamTest : TestBase
     [Fact]
     public void BetweenToolsValidationWorks()
     {
-        ThinkingConfigParam value = new BetweenTools();
+        ThinkingConfigParam value = new ThinkingConfigBetweenTools();
         value.Validate();
     }
 
@@ -72,7 +72,7 @@ public class ThinkingConfigParamTest : TestBase
     [Fact]
     public void BetweenToolsSerializationRoundtripWorks()
     {
-        ThinkingConfigParam value = new BetweenTools();
+        ThinkingConfigParam value = new ThinkingConfigBetweenTools();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<ThinkingConfigParam>(
             element,
@@ -111,102 +111,10 @@ public class ThinkingConfigParamTest : TestBase
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("enabled");
 
-        Assert.NotNull(value.Type);
-        Assert.True(JsonElement.DeepEquals(expectedType, value.Type.Value));
+        Assert.True(JsonElement.DeepEquals(expectedType, value.Type));
 
         ThinkingConfigParam emptyValue = new(JsonSerializer.Deserialize<JsonElement>("{}"));
 
-        Assert.Null(emptyValue.Type);
-    }
-}
-
-public class BetweenToolsTest : TestBase
-{
-    [Fact]
-    public void DefaultValidation_Works()
-    {
-        var constant = new BetweenTools();
-        constant.Validate();
-    }
-
-    [Fact]
-    public void ValidConstantValidation_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        constant.Validate();
-    }
-
-    [Fact]
-    public void InvalidConstantValidationThrows_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        Assert.Throws<AnthropicInvalidDataException>(() => constant.Validate());
-    }
-
-    [Fact]
-    public void DefaultRoundtrip_Works()
-    {
-        var constant = new BetweenTools();
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void ValidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void InvalidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
+        Assert.Throws<AnthropicInvalidDataException>(() => emptyValue.Type);
     }
 }

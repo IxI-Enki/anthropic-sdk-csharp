@@ -202,7 +202,7 @@ public record class Thinking : ModelBase
         }
     }
 
-    public JsonElement? Type
+    public JsonElement Type
     {
         get
         {
@@ -210,12 +210,9 @@ public record class Thinking : ModelBase
             {
                 BetaThinkingConfigEnabled x => x.Type,
                 BetaThinkingConfigDisabled x => x.Type,
-                global::Anthropic.Models.Beta.Messages.BetweenTools _ => null,
+                BetaThinkingConfigBetweenTools x => x.Type,
                 BetaThinkingConfigAdaptive x => x.Type,
-                _ => WrappedJsonSerializer.GetNullableStructProperty<JsonElement>(
-                    this.Json,
-                    "type"
-                ),
+                _ => WrappedJsonSerializer.GetNotNullStructProperty<JsonElement>(this.Json, "type"),
             };
         }
     }
@@ -228,7 +225,7 @@ public record class Thinking : ModelBase
             {
                 BetaThinkingConfigEnabled x => x.BlockBinding,
                 BetaThinkingConfigDisabled _ => null,
-                global::Anthropic.Models.Beta.Messages.BetweenTools _ => null,
+                BetaThinkingConfigBetweenTools _ => null,
                 BetaThinkingConfigAdaptive x => x.BlockBinding,
                 _ => WrappedJsonSerializer.GetNullableClassProperty<BetaThinkingBlockBinding>(
                     this.Json,
@@ -250,10 +247,7 @@ public record class Thinking : ModelBase
         this._element = element;
     }
 
-    public Thinking(
-        global::Anthropic.Models.Beta.Messages.BetweenTools value,
-        JsonElement? element = null
-    )
+    public Thinking(BetaThinkingConfigBetweenTools value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -318,24 +312,24 @@ public record class Thinking : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Anthropic.Models.Beta.Messages.BetweenTools"/>.
+    /// type <see cref="BetaThinkingConfigBetweenTools"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickBetweenTools(out var value)) {
-    ///     // `value` is of type `global::Anthropic.Models.Beta.Messages.BetweenTools`
+    /// if (instance.TryPickBetaThinkingConfigBetweenTools(out var value)) {
+    ///     // `value` is of type `BetaThinkingConfigBetweenTools`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickBetweenTools(
-        [NotNullWhen(true)] out global::Anthropic.Models.Beta.Messages.BetweenTools? value
+    public bool TryPickBetaThinkingConfigBetweenTools(
+        [NotNullWhen(true)] out BetaThinkingConfigBetweenTools? value
     )
     {
-        value = this.Value as global::Anthropic.Models.Beta.Messages.BetweenTools;
+        value = this.Value as BetaThinkingConfigBetweenTools;
         return value != null;
     }
 
@@ -378,7 +372,7 @@ public record class Thinking : ModelBase
     /// instance.Switch(
     ///     (BetaThinkingConfigEnabled value) =&gt; {...},
     ///     (BetaThinkingConfigDisabled value) =&gt; {...},
-    ///     (global::Anthropic.Models.Beta.Messages.BetweenTools value) =&gt; {...},
+    ///     (BetaThinkingConfigBetweenTools value) =&gt; {...},
     ///     (BetaThinkingConfigAdaptive value) =&gt; {...}
     /// );
     /// </code>
@@ -387,7 +381,7 @@ public record class Thinking : ModelBase
     public void Switch(
         System::Action<BetaThinkingConfigEnabled> betaThinkingConfigEnabled,
         System::Action<BetaThinkingConfigDisabled> betaThinkingConfigDisabled,
-        System::Action<global::Anthropic.Models.Beta.Messages.BetweenTools> betweenTools,
+        System::Action<BetaThinkingConfigBetweenTools> betaThinkingConfigBetweenTools,
         System::Action<BetaThinkingConfigAdaptive> betaThinkingConfigAdaptive
     )
     {
@@ -399,8 +393,8 @@ public record class Thinking : ModelBase
             case BetaThinkingConfigDisabled value:
                 betaThinkingConfigDisabled(value);
                 break;
-            case global::Anthropic.Models.Beta.Messages.BetweenTools value:
-                betweenTools(value);
+            case BetaThinkingConfigBetweenTools value:
+                betaThinkingConfigBetweenTools(value);
                 break;
             case BetaThinkingConfigAdaptive value:
                 betaThinkingConfigAdaptive(value);
@@ -429,7 +423,7 @@ public record class Thinking : ModelBase
     /// var result = instance.Match(
     ///     (BetaThinkingConfigEnabled value) =&gt; {...},
     ///     (BetaThinkingConfigDisabled value) =&gt; {...},
-    ///     (global::Anthropic.Models.Beta.Messages.BetweenTools value) =&gt; {...},
+    ///     (BetaThinkingConfigBetweenTools value) =&gt; {...},
     ///     (BetaThinkingConfigAdaptive value) =&gt; {...}
     /// );
     /// </code>
@@ -438,7 +432,7 @@ public record class Thinking : ModelBase
     public T Match<T>(
         System::Func<BetaThinkingConfigEnabled, T> betaThinkingConfigEnabled,
         System::Func<BetaThinkingConfigDisabled, T> betaThinkingConfigDisabled,
-        System::Func<global::Anthropic.Models.Beta.Messages.BetweenTools, T> betweenTools,
+        System::Func<BetaThinkingConfigBetweenTools, T> betaThinkingConfigBetweenTools,
         System::Func<BetaThinkingConfigAdaptive, T> betaThinkingConfigAdaptive
     )
     {
@@ -446,7 +440,7 @@ public record class Thinking : ModelBase
         {
             BetaThinkingConfigEnabled value => betaThinkingConfigEnabled(value),
             BetaThinkingConfigDisabled value => betaThinkingConfigDisabled(value),
-            global::Anthropic.Models.Beta.Messages.BetweenTools value => betweenTools(value),
+            BetaThinkingConfigBetweenTools value => betaThinkingConfigBetweenTools(value),
             BetaThinkingConfigAdaptive value => betaThinkingConfigAdaptive(value),
             _ => throw new AnthropicInvalidDataException(
                 "Data did not match any variant of Thinking"
@@ -458,9 +452,7 @@ public record class Thinking : ModelBase
 
     public static implicit operator Thinking(BetaThinkingConfigDisabled value) => new(value);
 
-    public static implicit operator Thinking(
-        global::Anthropic.Models.Beta.Messages.BetweenTools value
-    ) => new(value);
+    public static implicit operator Thinking(BetaThinkingConfigBetweenTools value) => new(value);
 
     public static implicit operator Thinking(BetaThinkingConfigAdaptive value) => new(value);
 
@@ -483,7 +475,7 @@ public record class Thinking : ModelBase
         this.Switch(
             (betaThinkingConfigEnabled) => betaThinkingConfigEnabled.Validate(),
             (betaThinkingConfigDisabled) => betaThinkingConfigDisabled.Validate(),
-            (betweenTools) => betweenTools.Validate(),
+            (betaThinkingConfigBetweenTools) => betaThinkingConfigBetweenTools.Validate(),
             (betaThinkingConfigAdaptive) => betaThinkingConfigAdaptive.Validate()
         );
     }
@@ -510,7 +502,7 @@ public record class Thinking : ModelBase
         {
             BetaThinkingConfigEnabled _ => 0,
             BetaThinkingConfigDisabled _ => 1,
-            global::Anthropic.Models.Beta.Messages.BetweenTools _ => 2,
+            BetaThinkingConfigBetweenTools _ => 2,
             BetaThinkingConfigAdaptive _ => 3,
             _ => -1,
         };
@@ -582,11 +574,10 @@ sealed class ThinkingConverter : JsonConverter<Thinking?>
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Anthropic.Models.Beta.Messages.BetweenTools>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<BetaThinkingConfigBetweenTools>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -633,80 +624,5 @@ sealed class ThinkingConverter : JsonConverter<Thinking?>
     )
     {
         JsonSerializer.Serialize(writer, value?.Json, options);
-    }
-}
-
-[JsonConverter(typeof(global::Anthropic.Models.Beta.Messages.BetweenToolsConverter))]
-public record class BetweenTools
-{
-    public JsonElement Element { get; private init; }
-
-    public BetweenTools()
-    {
-        Element = JsonSerializer.Deserialize<JsonElement>(
-            """
-            {
-              "type": "between_tools"
-            }
-            """
-        );
-    }
-
-    internal BetweenTools(JsonElement element)
-    {
-        Element = element;
-    }
-
-    /// <summary>
-    /// Validates that the instance's underlying value is the expected constant.
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="AnthropicInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public void Validate()
-    {
-        if (this != new global::Anthropic.Models.Beta.Messages.BetweenTools())
-        {
-            throw new AnthropicInvalidDataException("Invalid value given for 'BetweenTools'");
-        }
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public virtual bool Equals(global::Anthropic.Models.Beta.Messages.BetweenTools? other)
-    {
-        if (other == null)
-        {
-            return false;
-        }
-
-        return JsonElement.DeepEquals(this.Element, other.Element);
-    }
-}
-
-class BetweenToolsConverter : JsonConverter<global::Anthropic.Models.Beta.Messages.BetweenTools>
-{
-    public override global::Anthropic.Models.Beta.Messages.BetweenTools? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Anthropic.Models.Beta.Messages.BetweenTools value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(writer, value.Element, options);
     }
 }

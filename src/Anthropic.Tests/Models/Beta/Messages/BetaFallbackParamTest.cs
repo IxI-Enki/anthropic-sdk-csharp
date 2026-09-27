@@ -14,7 +14,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             MaxTokens = 0,
             OutputConfig = new()
             {
@@ -40,7 +40,7 @@ public class BetaFallbackParamTest : TestBase
             },
         };
 
-        ApiEnum<string, Messages::Model> expectedModel = Messages::Model.ClaudeFable5_1;
+        ApiEnum<string, Messages::Model> expectedModel = Messages::Model.ClaudeSonnet5_5;
         long expectedMaxTokens = 0;
         BetaOutputConfig expectedOutputConfig = new()
         {
@@ -77,7 +77,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             MaxTokens = 0,
             OutputConfig = new()
             {
@@ -117,7 +117,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             MaxTokens = 0,
             OutputConfig = new()
             {
@@ -150,7 +150,7 @@ public class BetaFallbackParamTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Messages::Model> expectedModel = Messages::Model.ClaudeFable5_1;
+        ApiEnum<string, Messages::Model> expectedModel = Messages::Model.ClaudeSonnet5_5;
         long expectedMaxTokens = 0;
         BetaOutputConfig expectedOutputConfig = new()
         {
@@ -187,7 +187,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             MaxTokens = 0,
             OutputConfig = new()
             {
@@ -219,7 +219,7 @@ public class BetaFallbackParamTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new BetaFallbackParam { Model = Messages::Model.ClaudeFable5_1 };
+        var model = new BetaFallbackParam { Model = Messages::Model.ClaudeSonnet5_5 };
 
         Assert.Null(model.MaxTokens);
         Assert.False(model.RawData.ContainsKey("max_tokens"));
@@ -234,7 +234,7 @@ public class BetaFallbackParamTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new BetaFallbackParam { Model = Messages::Model.ClaudeFable5_1 };
+        var model = new BetaFallbackParam { Model = Messages::Model.ClaudeSonnet5_5 };
 
         model.Validate();
     }
@@ -244,7 +244,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
 
             MaxTokens = null,
             OutputConfig = null,
@@ -267,7 +267,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
 
             MaxTokens = null,
             OutputConfig = null,
@@ -283,7 +283,7 @@ public class BetaFallbackParamTest : TestBase
     {
         var model = new BetaFallbackParam
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             MaxTokens = 0,
             OutputConfig = new()
             {
@@ -398,9 +398,9 @@ public class ThinkingTest : TestBase
     }
 
     [Fact]
-    public void BetweenToolsValidationWorks()
+    public void BetaThinkingConfigBetweenToolsValidationWorks()
     {
-        Thinking value = new BetweenTools();
+        Thinking value = new BetaThinkingConfigBetweenTools();
         value.Validate();
     }
 
@@ -453,9 +453,9 @@ public class ThinkingTest : TestBase
     }
 
     [Fact]
-    public void BetweenToolsSerializationRoundtripWorks()
+    public void BetaThinkingConfigBetweenToolsSerializationRoundtripWorks()
     {
-        Thinking value = new BetweenTools();
+        Thinking value = new BetaThinkingConfigBetweenTools();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Thinking>(
             element,
@@ -508,13 +508,12 @@ public class ThinkingTest : TestBase
             PrefixMismatchBehavior = BetaThinkingPrefixMismatchBehavior.Error,
         };
 
-        Assert.NotNull(value.Type);
-        Assert.True(JsonElement.DeepEquals(expectedType, value.Type.Value));
+        Assert.True(JsonElement.DeepEquals(expectedType, value.Type));
         Assert.Equal(expectedBlockBinding, value.BlockBinding);
 
         Thinking emptyValue = new(JsonSerializer.Deserialize<JsonElement>("{}"));
 
-        Assert.Null(emptyValue.Type);
+        Assert.Throws<AnthropicInvalidDataException>(() => emptyValue.Type);
         Assert.Null(emptyValue.BlockBinding);
 
         Thinking mismatchedValue = new(
@@ -530,96 +529,5 @@ public class ThinkingTest : TestBase
         );
 
         Assert.Null(mismatchedValue.BlockBinding);
-    }
-}
-
-public class BetweenToolsTest : TestBase
-{
-    [Fact]
-    public void DefaultValidation_Works()
-    {
-        var constant = new BetweenTools();
-        constant.Validate();
-    }
-
-    [Fact]
-    public void ValidConstantValidation_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        constant.Validate();
-    }
-
-    [Fact]
-    public void InvalidConstantValidationThrows_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(constant);
-        Assert.Throws<AnthropicInvalidDataException>(() => constant.Validate());
-    }
-
-    [Fact]
-    public void DefaultRoundtrip_Works()
-    {
-        var constant = new BetweenTools();
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void ValidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.Deserialize<JsonElement>(
-                """
-                {
-                  "type": "between_tools"
-                }
-                """
-            ),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
-    }
-
-    [Fact]
-    public void InvalidConstantRoundtrip_Works()
-    {
-        var constant = JsonSerializer.Deserialize<BetweenTools>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BetweenTools>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(constant, deserialized);
     }
 }
