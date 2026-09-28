@@ -22,6 +22,7 @@ public class TunnelListPageResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     DisplayName = "display_name",
                     Domain = "domain",
+                    Transport = new BetaCloudflareTunnelTransport(),
                 },
             ],
             NextPage = "next_page",
@@ -36,6 +37,7 @@ public class TunnelListPageResponseTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 DisplayName = "display_name",
                 Domain = "domain",
+                Transport = new BetaCloudflareTunnelTransport(),
             },
         ];
         string expectedNextPage = "next_page";
@@ -62,6 +64,7 @@ public class TunnelListPageResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     DisplayName = "display_name",
                     Domain = "domain",
+                    Transport = new BetaCloudflareTunnelTransport(),
                 },
             ],
             NextPage = "next_page",
@@ -90,6 +93,7 @@ public class TunnelListPageResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     DisplayName = "display_name",
                     Domain = "domain",
+                    Transport = new BetaCloudflareTunnelTransport(),
                 },
             ],
             NextPage = "next_page",
@@ -111,6 +115,7 @@ public class TunnelListPageResponseTest : TestBase
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 DisplayName = "display_name",
                 Domain = "domain",
+                Transport = new BetaCloudflareTunnelTransport(),
             },
         ];
         string expectedNextPage = "next_page";
@@ -137,6 +142,7 @@ public class TunnelListPageResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     DisplayName = "display_name",
                     Domain = "domain",
+                    Transport = new BetaCloudflareTunnelTransport(),
                 },
             ],
             NextPage = "next_page",
@@ -159,6 +165,7 @@ public class TunnelListPageResponseTest : TestBase
                     CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     DisplayName = "display_name",
                     Domain = "domain",
+                    Transport = new BetaCloudflareTunnelTransport(),
                 },
             ],
             NextPage = "next_page",

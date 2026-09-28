@@ -83,6 +83,24 @@ public sealed record class BetaTunnel : JsonModel
         init { this._rawData.Set("domain", value); }
     }
 
+    /// <summary>
+    /// How traffic reaches the tunnel. Chosen by Anthropic per organization when
+    /// the tunnel is created; read-only and present on every tunnel, so automation
+    /// can tell which connector to deploy. A union discriminated on `type`: `{"type":
+    /// "cloudflare"}` or `{"type": "relay"}`. In the create response a `relay` tunnel's
+    /// transport also carries `token`, its relay token, shown that once; no read
+    /// carries a token.
+    /// </summary>
+    public required BetaTunnelTransport Transport
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<BetaTunnelTransport>("transport");
+        }
+        init { this._rawData.Set("transport", value); }
+    }
+
     public JsonElement Type
     {
         get
@@ -101,6 +119,7 @@ public sealed record class BetaTunnel : JsonModel
         _ = this.CreatedAt;
         _ = this.DisplayName;
         _ = this.Domain;
+        this.Transport.Validate();
         if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("tunnel")))
         {
             throw new AnthropicInvalidDataException("Invalid value given for constant");
