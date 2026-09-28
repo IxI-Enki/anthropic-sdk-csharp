@@ -558,7 +558,13 @@ public class BetaRefusalFallbackHandlerTest
             .EnqueueJson(200, Message("fallback-model"));
         var handler = new BetaRefusalFallbackHandler
         {
-            Fallbacks = [new BetaFallbackParam("fallback-model") { Thinking = new BetweenTools() }],
+            Fallbacks =
+            [
+                new BetaFallbackParam("fallback-model")
+                {
+                    Thinking = new BetaThinkingConfigBetweenTools(),
+                },
+            ],
             InnerHandler = transport,
         };
         using HttpMessageInvoker invoker = new(handler);

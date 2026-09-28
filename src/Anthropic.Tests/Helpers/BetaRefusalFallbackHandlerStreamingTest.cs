@@ -152,7 +152,13 @@ public class BetaRefusalFallbackHandlerStreamingTest
         var transport = new FakeTransport().EnqueueSse(StreamA).EnqueueSse(StreamB);
         var handler = new BetaRefusalFallbackHandler
         {
-            Fallbacks = [new BetaFallbackParam(FallbackModel) { Thinking = new BetweenTools() }],
+            Fallbacks =
+            [
+                new BetaFallbackParam(FallbackModel)
+                {
+                    Thinking = new BetaThinkingConfigBetweenTools(),
+                },
+            ],
             InnerHandler = transport,
         };
         using HttpMessageInvoker invoker = new(handler);
