@@ -56,6 +56,7 @@ public enum AnthropicBeta
     Compact2026_09_04,
     InlineTools2026_09_15,
     McpClient2026_09_15,
+    CEPlugins2026_09_01,
 }
 
 sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
@@ -121,6 +122,7 @@ sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
             "compact-2026-09-04" => AnthropicBeta.Compact2026_09_04,
             "inline-tools-2026-09-15" => AnthropicBeta.InlineTools2026_09_15,
             "mcp-client-2026-09-15" => AnthropicBeta.McpClient2026_09_15,
+            "ce-plugins-2026-09-01" => AnthropicBeta.CEPlugins2026_09_01,
             _ => (AnthropicBeta)(-1),
         };
     }
@@ -189,6 +191,7 @@ sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
                 AnthropicBeta.Compact2026_09_04 => "compact-2026-09-04",
                 AnthropicBeta.InlineTools2026_09_15 => "inline-tools-2026-09-15",
                 AnthropicBeta.McpClient2026_09_15 => "mcp-client-2026-09-15",
+                AnthropicBeta.CEPlugins2026_09_01 => "ce-plugins-2026-09-01",
                 _ => throw new AnthropicInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

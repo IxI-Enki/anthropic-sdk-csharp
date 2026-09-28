@@ -45,6 +45,10 @@ public interface IOrganizationService
 
     IComplianceSettingService ComplianceSettings { get; }
 
+    IPluginService Plugins { get; }
+
+    IPluginMarketplaceService PluginMarketplaces { get; }
+
     /// <summary>
     /// Retrieve information about the organization associated with the authenticated
     /// API key.
@@ -85,6 +89,10 @@ public interface IOrganizationServiceWithRawResponse
     IRateLimitServiceWithRawResponse RateLimits { get; }
 
     IComplianceSettingServiceWithRawResponse ComplianceSettings { get; }
+
+    IPluginServiceWithRawResponse Plugins { get; }
+
+    IPluginMarketplaceServiceWithRawResponse PluginMarketplaces { get; }
 
     /// <summary>
     /// Returns a raw HTTP response for <c>get /v1/organizations/me?beta=true</c>, but is otherwise the

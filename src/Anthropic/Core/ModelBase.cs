@@ -5,6 +5,8 @@ using Anthropic.Models.Beta;
 using Anthropic.Models.Beta.Environments.Work;
 using Anthropic.Models.Beta.Organization;
 using Anthropic.Models.Beta.Organization.ExternalKeys;
+using Anthropic.Models.Beta.Organization.Plugins.InstallationSettings;
+using Anthropic.Models.Beta.Organization.Plugins.Versions;
 using Anthropic.Models.Beta.Organization.ServiceAccounts;
 using Anthropic.Models.Beta.Organization.Workspaces;
 using Anthropic.Models.Beta.Organization.Workspaces.RateLimits;
@@ -27,9 +29,12 @@ using MemoryStores = Anthropic.Models.Beta.MemoryStores;
 using MemoryVersions = Anthropic.Models.Beta.MemoryStores.MemoryVersions;
 using Messages = Anthropic.Models.Beta.Messages;
 using MessagesBatches = Anthropic.Models.Beta.Messages.Batches;
+using PluginMarketplaces = Anthropic.Models.Beta.Organization.PluginMarketplaces;
+using Plugins = Anthropic.Models.Beta.Organization.Plugins;
 using RateLimits = Anthropic.Models.Beta.Organization.RateLimits;
 using Resources = Anthropic.Models.Beta.Sessions.Resources;
 using Sessions = Anthropic.Models.Beta.Sessions;
+using Shares = Anthropic.Models.Beta.Organization.Plugins.Shares;
 using Skills = Anthropic.Models.Skills;
 using Threads = Anthropic.Models.Beta.Sessions.Threads;
 using UserProfiles = Anthropic.Models.Beta.UserProfiles;
@@ -752,6 +757,26 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, GroupType>(),
             new ApiEnumConverter<string, RateLimits::BetaOrganizationRateLimitGroupType>(),
             new ApiEnumConverter<string, RateLimits::GroupType>(),
+            new ApiEnumConverter<string, Plugins::OrganizationInstallationPreference>(),
+            new ApiEnumConverter<string, Plugins::Reach>(),
+            new ApiEnumConverter<string, Plugins::Type>(),
+            new ApiEnumConverter<string, Plugins::Assessment>(),
+            new ApiEnumConverter<string, Plugins::Status>(),
+            new ApiEnumConverter<string, Plugins::OwnerType>(),
+            new ApiEnumConverter<string, Reach>(),
+            new ApiEnumConverter<string, BetaPluginInstallationSettingInstallationPreference>(),
+            new ApiEnumConverter<string, TargetType>(),
+            new ApiEnumConverter<string, InstallationPreference>(),
+            new ApiEnumConverter<string, Shares::TargetType>(),
+            new ApiEnumConverter<
+                string,
+                PluginMarketplaces::BetaPluginMarketplaceDefaultInstallationPreference
+            >(),
+            new ApiEnumConverter<string, PluginMarketplaces::BetaPluginMarketplaceSource>(),
+            new ApiEnumConverter<string, PluginMarketplaces::SyncStatus>(),
+            new ApiEnumConverter<string, PluginMarketplaces::DefaultInstallationPreference>(),
+            new ApiEnumConverter<string, PluginMarketplaces::OwnerType>(),
+            new ApiEnumConverter<string, PluginMarketplaces::Source>(),
         },
     };
 

@@ -43,6 +43,8 @@ public sealed class OrganizationService : IOrganizationService
         _workspaces = new(() => new WorkspaceService(client));
         _rateLimits = new(() => new RateLimitService(client));
         _complianceSettings = new(() => new ComplianceSettingService(client));
+        _plugins = new(() => new PluginService(client));
+        _pluginMarketplaces = new(() => new PluginMarketplaceService(client));
     }
 
     readonly Lazy<IApiKeyService> _apiKeys;
@@ -99,6 +101,18 @@ public sealed class OrganizationService : IOrganizationService
         get { return _complianceSettings.Value; }
     }
 
+    readonly Lazy<IPluginService> _plugins;
+    public IPluginService Plugins
+    {
+        get { return _plugins.Value; }
+    }
+
+    readonly Lazy<IPluginMarketplaceService> _pluginMarketplaces;
+    public IPluginMarketplaceService PluginMarketplaces
+    {
+        get { return _pluginMarketplaces.Value; }
+    }
+
     /// <inheritdoc/>
     public async Task<BetaOrganization> Retrieve(
         OrganizationRetrieveParams? parameters = null,
@@ -138,6 +152,8 @@ public sealed class OrganizationServiceWithRawResponse : IOrganizationServiceWit
         _workspaces = new(() => new WorkspaceServiceWithRawResponse(client));
         _rateLimits = new(() => new RateLimitServiceWithRawResponse(client));
         _complianceSettings = new(() => new ComplianceSettingServiceWithRawResponse(client));
+        _plugins = new(() => new PluginServiceWithRawResponse(client));
+        _pluginMarketplaces = new(() => new PluginMarketplaceServiceWithRawResponse(client));
     }
 
     readonly Lazy<IApiKeyServiceWithRawResponse> _apiKeys;
@@ -192,6 +208,18 @@ public sealed class OrganizationServiceWithRawResponse : IOrganizationServiceWit
     public IComplianceSettingServiceWithRawResponse ComplianceSettings
     {
         get { return _complianceSettings.Value; }
+    }
+
+    readonly Lazy<IPluginServiceWithRawResponse> _plugins;
+    public IPluginServiceWithRawResponse Plugins
+    {
+        get { return _plugins.Value; }
+    }
+
+    readonly Lazy<IPluginMarketplaceServiceWithRawResponse> _pluginMarketplaces;
+    public IPluginMarketplaceServiceWithRawResponse PluginMarketplaces
+    {
+        get { return _pluginMarketplaces.Value; }
     }
 
     /// <inheritdoc/>

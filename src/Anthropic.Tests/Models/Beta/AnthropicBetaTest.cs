@@ -56,6 +56,7 @@ public class AnthropicBetaTest : TestBase
     [InlineData(AnthropicBeta.Compact2026_09_04)]
     [InlineData(AnthropicBeta.InlineTools2026_09_15)]
     [InlineData(AnthropicBeta.McpClient2026_09_15)]
+    [InlineData(AnthropicBeta.CEPlugins2026_09_01)]
     public void Validation_Works(AnthropicBeta rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -124,6 +125,7 @@ public class AnthropicBetaTest : TestBase
     [InlineData(AnthropicBeta.Compact2026_09_04)]
     [InlineData(AnthropicBeta.InlineTools2026_09_15)]
     [InlineData(AnthropicBeta.McpClient2026_09_15)]
+    [InlineData(AnthropicBeta.CEPlugins2026_09_01)]
     public void SerializationRoundtrip_Works(AnthropicBeta rawValue)
     {
         // force implicit conversion because Theory can't do that for us
