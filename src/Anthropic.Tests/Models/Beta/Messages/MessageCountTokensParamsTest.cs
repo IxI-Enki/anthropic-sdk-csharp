@@ -1552,7 +1552,7 @@ public class ToolTest : TestBase
     {
         Tool value = new BetaAdvisorTool20260301()
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             AllowedCallers = [AllowedCaller.Direct],
             CacheControl = new() { Ttl = Ttl.Ttl5m },
             Caching = new() { Ttl = Ttl.Ttl5m },
@@ -2239,7 +2239,7 @@ public class ToolTest : TestBase
     {
         Tool value = new BetaAdvisorTool20260301()
         {
-            Model = Messages::Model.ClaudeFable5_1,
+            Model = Messages::Model.ClaudeSonnet5_5,
             AllowedCallers = [AllowedCaller.Direct],
             CacheControl = new() { Ttl = Ttl.Ttl5m },
             Caching = new() { Ttl = Ttl.Ttl5m },

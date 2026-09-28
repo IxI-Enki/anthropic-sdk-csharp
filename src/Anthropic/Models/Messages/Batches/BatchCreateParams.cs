@@ -435,6 +435,21 @@ public sealed record class Params : JsonModel
     }
 
     /// <summary>
+    /// Request-level diagnostics. Supply `previous_message_id` to have the response
+    /// include `diagnostics.cache_miss_reason` explaining any prompt-cache divergence
+    /// from that prior request.
+    /// </summary>
+    public DiagnosticsParam? Diagnostics
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DiagnosticsParam>("diagnostics");
+        }
+        init { this._rawData.Set("diagnostics", value); }
+    }
+
+    /// <summary>
     /// Specifies the geographic region for inference processing. If not specified,
     /// the workspace's `default_inference_geo` is used.
     /// </summary>
@@ -550,10 +565,13 @@ public sealed record class Params : JsonModel
     }
 
     /// <summary>
-    /// Whether to incrementally stream the response using server-sent events.
+    /// Whether to incrementally stream the response using server-sent events. When
+    /// `true`, SDKs return a raw event stream.
     ///
-    /// <para>See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)
-    /// for details.</para>
+    /// <para>In the TypeScript, Python and Ruby SDKs, the recommended way to stream
+    /// is `messages.stream()`. It sets `stream` for you and accumulates the events
+    /// into the final message. See [Streaming with SDKs](https://platform.claude.com/docs/en/build-with-claude/streaming#streaming-with-sdks)
+    /// for an example in each language.</para>
     /// </summary>
     public bool? Stream
     {
@@ -817,6 +835,7 @@ public sealed record class Params : JsonModel
         this.Model.Raw();
         this.CacheControl?.Validate();
         this.Container?.Validate();
+        this.Diagnostics?.Validate();
         _ = this.InferenceGeo;
         this.Metadata?.Validate();
         this.OutputConfig?.Validate();

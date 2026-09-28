@@ -115,8 +115,8 @@ public record class AgentUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// A coordinator topology: the session's primary thread orchestrates work by
-    /// spawning session threads, each running an agent drawn from the `agents` roster.
+    /// Multiagent orchestration configuration. Full replacement. Omit to preserve;
+    /// send null to clear.
     /// </summary>
     public BetaManagedAgentsMultiagentParams? Multiagent
     {

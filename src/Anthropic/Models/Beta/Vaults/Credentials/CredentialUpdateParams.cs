@@ -33,7 +33,8 @@ public record class CredentialUpdateParams : ParamsBase
     public string? CredentialID { get; init; }
 
     /// <summary>
-    /// Updated authentication details for a credential.
+    /// Updated authentication configuration. The `type` is immutable; the variant
+    /// sent must match the stored credential's type.
     /// </summary>
     public CredentialUpdateParamsAuth? Auth
     {
@@ -275,7 +276,8 @@ public record class CredentialUpdateParams : ParamsBase
 }
 
 /// <summary>
-/// Updated authentication details for a credential.
+/// Updated authentication configuration. The `type` is immutable; the variant sent
+/// must match the stored credential's type.
 /// </summary>
 [JsonConverter(typeof(CredentialUpdateParamsAuthConverter))]
 public record class CredentialUpdateParamsAuth : ModelBase

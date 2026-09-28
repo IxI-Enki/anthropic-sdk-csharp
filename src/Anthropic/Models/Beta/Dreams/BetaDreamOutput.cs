@@ -10,7 +10,7 @@ using System = System;
 namespace Anthropic.Models.Beta.Dreams;
 
 /// <summary>
-/// The memory store that holds a dream's result, as an entry in `outputs`.
+/// An entry in a dream's `outputs` that references the memory store holding its result.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<BetaDreamOutput, BetaDreamOutputFromRaw>))]
 public sealed record class BetaDreamOutput : JsonModel

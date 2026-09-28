@@ -101,7 +101,7 @@ public sealed record class BetaManagedAgentsUserCustomToolResultEvent : JsonMode
     }
 
     /// <summary>
-    /// A timestamp in RFC 3339 format
+    /// Timestamp when this result was processed.
     /// </summary>
     public System::DateTimeOffset? ProcessedAt
     {

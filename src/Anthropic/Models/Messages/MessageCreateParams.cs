@@ -166,6 +166,21 @@ public record class MessageCreateParams : ParamsBase
     }
 
     /// <summary>
+    /// Request-level diagnostics. Supply `previous_message_id` to have the response
+    /// include `diagnostics.cache_miss_reason` explaining any prompt-cache divergence
+    /// from that prior request.
+    /// </summary>
+    public DiagnosticsParam? Diagnostics
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<DiagnosticsParam>("diagnostics");
+        }
+        init { this._rawBodyData.Set("diagnostics", value); }
+    }
+
+    /// <summary>
     /// Specifies the geographic region for inference processing. If not specified,
     /// the workspace's `default_inference_geo` is used.
     /// </summary>

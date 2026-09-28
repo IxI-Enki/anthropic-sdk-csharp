@@ -154,14 +154,15 @@ public record class MessageCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Compact the whole conversation and return a signed `compaction` block, alone,
-    /// that a later request sends back first in `messages`, in place of the messages
-    /// it summarizes. There is no trigger and no pause flag: sending the parameter
-    /// compacts, and nothing is sampled after the block.
+    /// Compaction configuration.
     ///
-    /// <para>The summarization prompt is the server's own unless `instructions` are
-    /// given, which then replace it for this request; a value that is empty or only
-    /// whitespace counts as absent.</para>
+    /// <para>When set on `POST /v1/messages`, the request is a compaction request:
+    /// the conversation in `messages` is summarized and the response holds only
+    /// the resulting `compaction` block (`stop_reason` `"compaction"`), which later
+    /// requests send first in `messages` in place of the messages it summarizes.
+    /// `POST /v1/messages/count_tokens` accepts this parameter and ignores it: the
+    /// count it returns is for the conversation in `messages` as sent. Cannot be
+    /// combined with `context_management`.</para>
     /// </summary>
     public BetaCompactionConfig? Compaction
     {
@@ -205,8 +206,9 @@ public record class MessageCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Request-level diagnostics. Currently carries the previous response id for
-    /// prompt-cache divergence reporting.
+    /// Request-level diagnostics. Supply `previous_message_id` to have the response
+    /// include `diagnostics.cache_miss_reason` explaining any prompt-cache divergence
+    /// from that prior request.
     /// </summary>
     public BetaDiagnosticsParam? Diagnostics
     {
@@ -391,9 +393,7 @@ public record class MessageCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Inference speed mode. `fast` provides significantly faster output token generation
-    /// at premium pricing. Not all models support `fast`; invalid combinations are
-    /// rejected at create time.
+    /// The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
     /// </summary>
     public ApiEnum<string, Speed>? Speed
     {
@@ -1446,9 +1446,7 @@ sealed class ServiceTierConverter : JsonConverter<ServiceTier>
 }
 
 /// <summary>
-/// Inference speed mode. `fast` provides significantly faster output token generation
-/// at premium pricing. Not all models support `fast`; invalid combinations are rejected
-/// at create time.
+/// The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
 /// </summary>
 [JsonConverter(typeof(SpeedConverter))]
 public enum Speed

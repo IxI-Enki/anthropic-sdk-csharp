@@ -176,12 +176,14 @@ public record class EventListParams : ParamsBase
     /// Filter by event type. Values match the `type` field on returned events (for
     /// example, `user.message` or `agent.tool_use`). Omit to return all event types.
     /// </summary>
-    public IReadOnlyList<string>? Types
+    public IReadOnlyList<ApiEnum<string, BetaManagedAgentsSessionEventType>>? Types
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("types");
+            return this._rawQueryData.GetNullableStruct<
+                ImmutableArray<ApiEnum<string, BetaManagedAgentsSessionEventType>>
+            >("types");
         }
         init
         {
@@ -190,10 +192,9 @@ public record class EventListParams : ParamsBase
                 return;
             }
 
-            this._rawQueryData.Set<ImmutableArray<string>?>(
-                "types",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
+            this._rawQueryData.Set<ImmutableArray<
+                ApiEnum<string, BetaManagedAgentsSessionEventType>
+            >?>("types", value == null ? null : ImmutableArray.ToImmutableArray(value));
         }
     }
 

@@ -60,7 +60,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -100,7 +100,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                             CacheCreationInputTokens = 0,
                             CacheReadInputTokens = 0,
                             InputTokens = 0,
-                            Model = Model.ClaudeFable5_1,
+                            Model = Model.ClaudeSonnet5_5,
                             OutputTokens = 0,
                         },
                     ],
@@ -168,7 +168,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -204,7 +204,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                         CacheCreationInputTokens = 0,
                         CacheReadInputTokens = 0,
                         InputTokens = 0,
-                        Model = Model.ClaudeFable5_1,
+                        Model = Model.ClaudeSonnet5_5,
                         OutputTokens = 0,
                     },
                 ],
@@ -281,7 +281,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -321,7 +321,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                             CacheCreationInputTokens = 0,
                             CacheReadInputTokens = 0,
                             InputTokens = 0,
-                            Model = Model.ClaudeFable5_1,
+                            Model = Model.ClaudeSonnet5_5,
                             OutputTokens = 0,
                         },
                     ],
@@ -403,7 +403,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -443,7 +443,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                             CacheCreationInputTokens = 0,
                             CacheReadInputTokens = 0,
                             InputTokens = 0,
-                            Model = Model.ClaudeFable5_1,
+                            Model = Model.ClaudeSonnet5_5,
                             OutputTokens = 0,
                         },
                     ],
@@ -518,7 +518,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                 ]
             ),
             Diagnostics = new(
-                new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
             ),
             Model = Model.ClaudeOpus5,
             StopDetails = new()
@@ -554,7 +554,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                         CacheCreationInputTokens = 0,
                         CacheReadInputTokens = 0,
                         InputTokens = 0,
-                        Model = Model.ClaudeFable5_1,
+                        Model = Model.ClaudeSonnet5_5,
                         OutputTokens = 0,
                     },
                 ],
@@ -631,7 +631,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -671,7 +671,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                             CacheCreationInputTokens = 0,
                             CacheReadInputTokens = 0,
                             InputTokens = 0,
-                            Model = Model.ClaudeFable5_1,
+                            Model = Model.ClaudeSonnet5_5,
                             OutputTokens = 0,
                         },
                     ],
@@ -747,7 +747,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                     ]
                 ),
                 Diagnostics = new(
-                    new Messages::CacheMissReason(new Messages::BetaCacheMissModelChanged(0))
+                    new Messages::BetaCacheMissReason(new Messages::BetaCacheMissModelChanged(0))
                 ),
                 Model = Model.ClaudeOpus5,
                 StopDetails = new()
@@ -787,7 +787,7 @@ public class BetaMessageBatchSucceededResultTest : TestBase
                             CacheCreationInputTokens = 0,
                             CacheReadInputTokens = 0,
                             InputTokens = 0,
-                            Model = Model.ClaudeFable5_1,
+                            Model = Model.ClaudeSonnet5_5,
                             OutputTokens = 0,
                         },
                     ],

@@ -29,9 +29,9 @@ public record class SessionUpdateParams : ParamsBase
     public string? SessionID { get; init; }
 
     /// <summary>
-    /// Mid-session agent configuration update. Only `tools` and `mcp_servers` are
-    /// updatable. Full replacement: the provided array becomes the new value. To
-    /// preserve existing entries, GET the session, modify the array, and POST it back.
+    /// Agent configuration update. Only `tools` and `mcp_servers` are updatable mid-session.
+    /// Only valid for sessions created from an agent or deployment reference. The
+    /// session must not be running.
     /// </summary>
     public BetaManagedAgentsSessionAgentUpdate? Agent
     {
@@ -52,8 +52,14 @@ public record class SessionUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// A hard spend ceiling. The session stops issuing new model requests once the
-    /// tracked list cost reaches `max_list_cost`.
+    /// Enforced spend ceiling for the session. Set an object to replace the budget
+    /// of a session that was created with one, or `null` to remove it; omit to preserve.
+    /// A budget cannot be added to a session created without one (rejected with
+    /// reason `budget_create_only`), and a removed budget cannot be re-added. Allowed
+    /// in any non-terminated status. Lowering `max_list_cost` to at or below the
+    /// session's consumed list cost is rejected with reason `budget_not_raised`,
+    /// and every model the session can run must have a public list price or the request
+    /// is rejected with reason `model_not_budgetable`.
     /// </summary>
     public BetaManagedAgentsBudgetLimit? Budget
     {

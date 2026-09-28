@@ -57,4 +57,5 @@ else
 fi
 
 echo "==> Running tests"
-dotnet test
+# Names the test project so that only what the tests use is built. Add a line for any new test project.
+dotnet test src/Anthropic.Tests/Anthropic.Tests.csproj

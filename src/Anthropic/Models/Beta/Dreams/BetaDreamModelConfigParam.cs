@@ -36,9 +36,9 @@ public sealed record class BetaDreamModelConfigParam : JsonModel
     }
 
     /// <summary>
-    /// Inference speed mode. `fast` provides significantly faster output token generation
-    /// at premium pricing. Not all models support `fast`; invalid combinations are
-    /// rejected at create time.
+    /// How fast the model generates output for the dream. Defaults to `standard`.
+    ///
+    /// <para>Dreams accept only `standard`.</para>
     /// </summary>
     public ApiEnum<string, BetaDreamModelConfigParamSpeed>? Speed
     {
@@ -105,9 +105,9 @@ class BetaDreamModelConfigParamFromRaw : IFromRawJson<BetaDreamModelConfigParam>
 }
 
 /// <summary>
-/// Inference speed mode. `fast` provides significantly faster output token generation
-/// at premium pricing. Not all models support `fast`; invalid combinations are rejected
-/// at create time.
+/// How fast the model generates output for the dream. Defaults to `standard`.
+///
+/// <para>Dreams accept only `standard`.</para>
 /// </summary>
 [JsonConverter(typeof(BetaDreamModelConfigParamSpeedConverter))]
 public enum BetaDreamModelConfigParamSpeed

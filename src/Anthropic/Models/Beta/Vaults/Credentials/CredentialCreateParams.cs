@@ -31,7 +31,7 @@ public record class CredentialCreateParams : ParamsBase
     public string? VaultID { get; init; }
 
     /// <summary>
-    /// Authentication details for creating a credential.
+    /// Authentication configuration for the credential.
     /// </summary>
     public required Auth Auth
     {
@@ -260,7 +260,7 @@ public record class CredentialCreateParams : ParamsBase
 }
 
 /// <summary>
-/// Authentication details for creating a credential.
+/// Authentication configuration for the credential.
 /// </summary>
 [JsonConverter(typeof(AuthConverter))]
 public record class Auth : ModelBase

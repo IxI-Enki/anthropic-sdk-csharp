@@ -69,9 +69,7 @@ public sealed record class BetaManagedAgentsModelConfigParams : JsonModel
     }
 
     /// <summary>
-    /// Inference speed mode. `fast` provides significantly faster output token generation
-    /// at premium pricing. Not all models support `fast`; invalid combinations are
-    /// rejected at create time.
+    /// Inference speed mode. Defaults to `standard`.
     /// </summary>
     public ApiEnum<string, BetaManagedAgentsModelConfigParamsSpeed>? Speed
     {
@@ -759,9 +757,7 @@ sealed class BetaManagedAgentsEffortLevelConverter : JsonConverter<BetaManagedAg
 }
 
 /// <summary>
-/// Inference speed mode. `fast` provides significantly faster output token generation
-/// at premium pricing. Not all models support `fast`; invalid combinations are rejected
-/// at create time.
+/// Inference speed mode. Defaults to `standard`.
 /// </summary>
 [JsonConverter(typeof(BetaManagedAgentsModelConfigParamsSpeedConverter))]
 public enum BetaManagedAgentsModelConfigParamsSpeed
