@@ -299,13 +299,14 @@ public class BetaManagedAgentsStreamSessionEventsTest : TestBase
             new Events::BetaManagedAgentsSessionErrorEvent()
             {
                 ID = "id",
-                Error = new Events::BetaManagedAgentsUnknownError()
+                Error = new Events::BetaManagedAgentsRepositoryAuthenticationError()
                 {
-                    Message = "message",
+                    Message =
+                        "The repository host rejected the credentials for the repository, or required credentials and received none.",
+                    RepositoryUrl = "https://github.com/example-org/example-repo",
                     RetryStatus = new Events::BetaManagedAgentsRetryStatusRetrying(
                         Events::BetaManagedAgentsRetryStatusRetryingType.Retrying
                     ),
-                    Type = Events::BetaManagedAgentsUnknownErrorType.UnknownError,
                 },
                 ProcessedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Type = Events::BetaManagedAgentsSessionErrorEventType.SessionError,
@@ -1221,13 +1222,14 @@ public class BetaManagedAgentsStreamSessionEventsTest : TestBase
             new Events::BetaManagedAgentsSessionErrorEvent()
             {
                 ID = "id",
-                Error = new Events::BetaManagedAgentsUnknownError()
+                Error = new Events::BetaManagedAgentsRepositoryAuthenticationError()
                 {
-                    Message = "message",
+                    Message =
+                        "The repository host rejected the credentials for the repository, or required credentials and received none.",
+                    RepositoryUrl = "https://github.com/example-org/example-repo",
                     RetryStatus = new Events::BetaManagedAgentsRetryStatusRetrying(
                         Events::BetaManagedAgentsRetryStatusRetryingType.Retrying
                     ),
-                    Type = Events::BetaManagedAgentsUnknownErrorType.UnknownError,
                 },
                 ProcessedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Type = Events::BetaManagedAgentsSessionErrorEventType.SessionError,
