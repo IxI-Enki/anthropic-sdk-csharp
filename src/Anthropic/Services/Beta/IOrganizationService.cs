@@ -45,6 +45,14 @@ public interface IOrganizationService
 
     IComplianceSettingService ComplianceSettings { get; }
 
+    IAnalyticsService Analytics { get; }
+
+    ISpendLimitService SpendLimits { get; }
+
+    IRbacGroupService RbacGroups { get; }
+
+    IRbacRoleService RbacRoles { get; }
+
     IPluginService Plugins { get; }
 
     IPluginMarketplaceService PluginMarketplaces { get; }
@@ -89,6 +97,14 @@ public interface IOrganizationServiceWithRawResponse
     IRateLimitServiceWithRawResponse RateLimits { get; }
 
     IComplianceSettingServiceWithRawResponse ComplianceSettings { get; }
+
+    IAnalyticsServiceWithRawResponse Analytics { get; }
+
+    ISpendLimitServiceWithRawResponse SpendLimits { get; }
+
+    IRbacGroupServiceWithRawResponse RbacGroups { get; }
+
+    IRbacRoleServiceWithRawResponse RbacRoles { get; }
 
     IPluginServiceWithRawResponse Plugins { get; }
 

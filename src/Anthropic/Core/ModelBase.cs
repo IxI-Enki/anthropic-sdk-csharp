@@ -4,18 +4,28 @@ using Anthropic.Models;
 using Anthropic.Models.Beta;
 using Anthropic.Models.Beta.Environments.Work;
 using Anthropic.Models.Beta.Organization;
+using Anthropic.Models.Beta.Organization.Analytics;
+using Anthropic.Models.Beta.Organization.Analytics.Users;
 using Anthropic.Models.Beta.Organization.Plugins.InstallationSettings;
 using Anthropic.Models.Beta.Organization.Plugins.Versions;
+using Anthropic.Models.Beta.Organization.RbacGroups;
+using Anthropic.Models.Beta.Organization.SpendLimits;
+using Anthropic.Models.Beta.Organization.SpendLimits.Effective;
+using Anthropic.Models.Beta.Organization.SpendLimits.IncreaseRequests;
 using Anthropic.Models.Messages;
 using Anthropic.Models.Organization;
 using Anthropic.Models.Organization.ExternalKeys;
 using Anthropic.Models.Organization.Workspaces;
 using Anthropic.Models.Organization.Workspaces.RateLimits;
 using Agents = Anthropic.Models.Beta.Agents;
+using AnalyticsSkills = Anthropic.Models.Beta.Organization.Analytics.Skills;
 using ApiKeys = Anthropic.Models.Organization.ApiKeys;
+using Artifacts = Anthropic.Models.Beta.Organization.Analytics.Artifacts;
 using Batches = Anthropic.Models.Messages.Batches;
 using BetaFiles = Anthropic.Models.Beta.Files;
 using BetaSkills = Anthropic.Models.Beta.Skills;
+using Connectors = Anthropic.Models.Beta.Organization.Analytics.Connectors;
+using CostReport = Anthropic.Models.Beta.Organization.Analytics.CostReport;
 using Credentials = Anthropic.Models.Beta.Vaults.Credentials;
 using DeploymentRuns = Anthropic.Models.Beta.DeploymentRuns;
 using Deployments = Anthropic.Models.Beta.Deployments;
@@ -32,11 +42,13 @@ using Messages = Anthropic.Models.Beta.Messages;
 using MessagesBatches = Anthropic.Models.Beta.Messages.Batches;
 using OrganizationApiKeys = Anthropic.Models.Beta.Organization.ApiKeys;
 using OrganizationInvites = Anthropic.Models.Beta.Organization.Invites;
+using OrganizationPlugins = Anthropic.Models.Beta.Organization.Plugins;
 using OrganizationRateLimits = Anthropic.Models.Beta.Organization.RateLimits;
 using OrganizationServiceAccounts = Anthropic.Models.Beta.Organization.ServiceAccounts;
 using OrganizationUsers = Anthropic.Models.Beta.Organization.Users;
 using PluginMarketplaces = Anthropic.Models.Beta.Organization.PluginMarketplaces;
-using Plugins = Anthropic.Models.Beta.Organization.Plugins;
+using Plugins = Anthropic.Models.Beta.Organization.Analytics.Plugins;
+using Projects = Anthropic.Models.Beta.Organization.Analytics.Apps.Chat.Projects;
 using RateLimits = Anthropic.Models.Organization.RateLimits;
 using Resources = Anthropic.Models.Beta.Sessions.Resources;
 using ServiceAccounts = Anthropic.Models.Organization.ServiceAccounts;
@@ -44,6 +56,7 @@ using Sessions = Anthropic.Models.Beta.Sessions;
 using Shares = Anthropic.Models.Beta.Organization.Plugins.Shares;
 using Skills = Anthropic.Models.Skills;
 using Threads = Anthropic.Models.Beta.Sessions.Threads;
+using UsageReport = Anthropic.Models.Beta.Organization.Analytics.UsageReport;
 using UserProfiles = Anthropic.Models.Beta.UserProfiles;
 using Users = Anthropic.Models.Organization.Users;
 using Vaults = Anthropic.Models.Beta.Vaults;
@@ -810,12 +823,44 @@ public abstract record class ModelBase
                 OrganizationRateLimits::BetaOrganizationRateLimitGroupType
             >(),
             new ApiEnumConverter<string, OrganizationRateLimits::GroupType>(),
-            new ApiEnumConverter<string, Plugins::OrganizationInstallationPreference>(),
-            new ApiEnumConverter<string, Plugins::Reach>(),
-            new ApiEnumConverter<string, Plugins::Type>(),
-            new ApiEnumConverter<string, Plugins::Assessment>(),
-            new ApiEnumConverter<string, Plugins::Status>(),
-            new ApiEnumConverter<string, Plugins::OwnerType>(),
+            new ApiEnumConverter<string, BetaAnalyticsClaudeTagCategory>(),
+            new ApiEnumConverter<string, BetaAnalyticsContextWindow>(),
+            new ApiEnumConverter<string, InferenceGeo>(),
+            new ApiEnumConverter<string, Speed>(),
+            new ApiEnumConverter<string, BetaAnalyticsCostType>(),
+            new ApiEnumConverter<string, BetaAnalyticsInferenceGeoFilter>(),
+            new ApiEnumConverter<string, BetaAnalyticsProductFilter>(),
+            new ApiEnumConverter<string, ShareStatus>(),
+            new ApiEnumConverter<string, BetaAnalyticsTokenType>(),
+            new ApiEnumConverter<string, BetaAnalyticsUsageBucketedResultInferenceGeo>(),
+            new ApiEnumConverter<string, BetaAnalyticsUsageBucketedResultSpeed>(),
+            new ApiEnumConverter<string, GroupBy>(),
+            new ApiEnumConverter<string, Order>(),
+            new ApiEnumConverter<string, Projects::GroupBy>(),
+            new ApiEnumConverter<string, Projects::Order>(),
+            new ApiEnumConverter<string, Connectors::GroupBy>(),
+            new ApiEnumConverter<string, Connectors::Order>(),
+            new ApiEnumConverter<string, Plugins::GroupBy>(),
+            new ApiEnumConverter<string, Plugins::Order>(),
+            new ApiEnumConverter<string, AnalyticsSkills::GroupBy>(),
+            new ApiEnumConverter<string, AnalyticsSkills::Order>(),
+            new ApiEnumConverter<string, Artifacts::GroupBy>(),
+            new ApiEnumConverter<string, UsageReport::BucketWidth>(),
+            new ApiEnumConverter<string, UsageReport::GroupBy>(),
+            new ApiEnumConverter<string, UsageReport::Speed>(),
+            new ApiEnumConverter<string, CostReport::BucketWidth>(),
+            new ApiEnumConverter<string, CostReport::GroupBy>(),
+            new ApiEnumConverter<string, CostReport::Speed>(),
+            new ApiEnumConverter<string, BetaSpendLimitPeriod>(),
+            new ApiEnumConverter<string, Period>(),
+            new ApiEnumConverter<string, BetaSpendLimitIncreaseRequestStatus>(),
+            new ApiEnumConverter<string, SourceType>(),
+            new ApiEnumConverter<string, OrganizationPlugins::OrganizationInstallationPreference>(),
+            new ApiEnumConverter<string, OrganizationPlugins::Reach>(),
+            new ApiEnumConverter<string, OrganizationPlugins::Type>(),
+            new ApiEnumConverter<string, OrganizationPlugins::Assessment>(),
+            new ApiEnumConverter<string, OrganizationPlugins::Status>(),
+            new ApiEnumConverter<string, OrganizationPlugins::OwnerType>(),
             new ApiEnumConverter<string, Reach>(),
             new ApiEnumConverter<string, BetaPluginInstallationSettingInstallationPreference>(),
             new ApiEnumConverter<string, TargetType>(),

@@ -43,6 +43,10 @@ public sealed class OrganizationService : IOrganizationService
         _workspaces = new(() => new WorkspaceService(client));
         _rateLimits = new(() => new RateLimitService(client));
         _complianceSettings = new(() => new ComplianceSettingService(client));
+        _analytics = new(() => new AnalyticsService(client));
+        _spendLimits = new(() => new SpendLimitService(client));
+        _rbacGroups = new(() => new RbacGroupService(client));
+        _rbacRoles = new(() => new RbacRoleService(client));
         _plugins = new(() => new PluginService(client));
         _pluginMarketplaces = new(() => new PluginMarketplaceService(client));
     }
@@ -101,6 +105,30 @@ public sealed class OrganizationService : IOrganizationService
         get { return _complianceSettings.Value; }
     }
 
+    readonly Lazy<IAnalyticsService> _analytics;
+    public IAnalyticsService Analytics
+    {
+        get { return _analytics.Value; }
+    }
+
+    readonly Lazy<ISpendLimitService> _spendLimits;
+    public ISpendLimitService SpendLimits
+    {
+        get { return _spendLimits.Value; }
+    }
+
+    readonly Lazy<IRbacGroupService> _rbacGroups;
+    public IRbacGroupService RbacGroups
+    {
+        get { return _rbacGroups.Value; }
+    }
+
+    readonly Lazy<IRbacRoleService> _rbacRoles;
+    public IRbacRoleService RbacRoles
+    {
+        get { return _rbacRoles.Value; }
+    }
+
     readonly Lazy<IPluginService> _plugins;
     public IPluginService Plugins
     {
@@ -152,6 +180,10 @@ public sealed class OrganizationServiceWithRawResponse : IOrganizationServiceWit
         _workspaces = new(() => new WorkspaceServiceWithRawResponse(client));
         _rateLimits = new(() => new RateLimitServiceWithRawResponse(client));
         _complianceSettings = new(() => new ComplianceSettingServiceWithRawResponse(client));
+        _analytics = new(() => new AnalyticsServiceWithRawResponse(client));
+        _spendLimits = new(() => new SpendLimitServiceWithRawResponse(client));
+        _rbacGroups = new(() => new RbacGroupServiceWithRawResponse(client));
+        _rbacRoles = new(() => new RbacRoleServiceWithRawResponse(client));
         _plugins = new(() => new PluginServiceWithRawResponse(client));
         _pluginMarketplaces = new(() => new PluginMarketplaceServiceWithRawResponse(client));
     }
@@ -208,6 +240,30 @@ public sealed class OrganizationServiceWithRawResponse : IOrganizationServiceWit
     public IComplianceSettingServiceWithRawResponse ComplianceSettings
     {
         get { return _complianceSettings.Value; }
+    }
+
+    readonly Lazy<IAnalyticsServiceWithRawResponse> _analytics;
+    public IAnalyticsServiceWithRawResponse Analytics
+    {
+        get { return _analytics.Value; }
+    }
+
+    readonly Lazy<ISpendLimitServiceWithRawResponse> _spendLimits;
+    public ISpendLimitServiceWithRawResponse SpendLimits
+    {
+        get { return _spendLimits.Value; }
+    }
+
+    readonly Lazy<IRbacGroupServiceWithRawResponse> _rbacGroups;
+    public IRbacGroupServiceWithRawResponse RbacGroups
+    {
+        get { return _rbacGroups.Value; }
+    }
+
+    readonly Lazy<IRbacRoleServiceWithRawResponse> _rbacRoles;
+    public IRbacRoleServiceWithRawResponse RbacRoles
+    {
+        get { return _rbacRoles.Value; }
     }
 
     readonly Lazy<IPluginServiceWithRawResponse> _plugins;
