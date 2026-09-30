@@ -161,9 +161,6 @@ public sealed record class BetaManagedAgentsSession : JsonModel
         init { this._rawData.Set("stats", value); }
     }
 
-    /// <summary>
-    /// SessionStatus enum
-    /// </summary>
     public required ApiEnum<string, BetaManagedAgentsSessionStatus> Status
     {
         get
@@ -322,9 +319,6 @@ class BetaManagedAgentsSessionFromRaw : IFromRawJson<BetaManagedAgentsSession>
     ) => BetaManagedAgentsSession.FromRawUnchecked(rawData);
 }
 
-/// <summary>
-/// SessionStatus enum
-/// </summary>
 [JsonConverter(typeof(BetaManagedAgentsSessionStatusConverter))]
 public enum BetaManagedAgentsSessionStatus
 {
