@@ -88,11 +88,17 @@ public enum BetaManagedAgentsModel
     /// <summary>
     /// High-performance model for agents and coding
     /// </summary>
+    [System::Obsolete(
+        "Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information."
+    )]
     ClaudeSonnet4_5,
 
     /// <summary>
     /// High-performance model for agents and coding
     /// </summary>
+    [System::Obsolete(
+        "Will reach end-of-life on November 30, 2026. Please migrate to claude-sonnet-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information."
+    )]
     ClaudeSonnet4_5_20250929,
 }
 

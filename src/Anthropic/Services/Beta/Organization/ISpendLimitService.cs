@@ -47,6 +47,19 @@ public interface ISpendLimitService
     );
 
     /// <summary>
+    /// List the organization's spend limits.
+    ///
+    /// <para>A Claude Console organization's limits come in an order that is stable
+    /// across pages. A Claude Enterprise organization's are grouped by scope type, in
+    /// the order `organization`, `seat_tier`, `rbac_group`, `organization_service`,
+    /// `user`; within a type they come in a fixed order that is not creation order.</para>
+    /// </summary>
+    Task<SpendLimitListPage> List(
+        SpendLimitListParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Delete a spend limit.
     ///
     /// <para>For a Claude Enterprise organization, this deletes a per-user override,
@@ -113,6 +126,15 @@ public interface ISpendLimitServiceWithRawResponse
     Task<HttpResponse<BetaSpendLimit>> Retrieve(
         string spendLimitID,
         SpendLimitRetrieveParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /v1/organizations/spend_limits?beta=true</c>, but is otherwise the
+    /// same as <see cref="ISpendLimitService.List(SpendLimitListParams?, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<SpendLimitListPage>> List(
+        SpendLimitListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 

@@ -17,6 +17,7 @@ public class BetaSpendLimitTest : TestBase
             Amount = "50000",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Currency = "USD",
+            IsEnabled = true,
             Period = BetaSpendLimitPeriod.Daily,
             Scope = new BetaSpendLimitUserScope("user_01WCz1FkmYMm4gnmykNKUu3Q"),
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -26,6 +27,7 @@ public class BetaSpendLimitTest : TestBase
         string expectedAmount = "50000";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "USD";
+        bool expectedIsEnabled = true;
         ApiEnum<string, BetaSpendLimitPeriod> expectedPeriod = BetaSpendLimitPeriod.Daily;
         BetaSpendLimitScope expectedScope = new BetaSpendLimitUserScope(
             "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -37,6 +39,7 @@ public class BetaSpendLimitTest : TestBase
         Assert.Equal(expectedAmount, model.Amount);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedCurrency, model.Currency);
+        Assert.Equal(expectedIsEnabled, model.IsEnabled);
         Assert.Equal(expectedPeriod, model.Period);
         Assert.Equal(expectedScope, model.Scope);
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
@@ -52,6 +55,7 @@ public class BetaSpendLimitTest : TestBase
             Amount = "50000",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Currency = "USD",
+            IsEnabled = true,
             Period = BetaSpendLimitPeriod.Daily,
             Scope = new BetaSpendLimitUserScope("user_01WCz1FkmYMm4gnmykNKUu3Q"),
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -75,6 +79,7 @@ public class BetaSpendLimitTest : TestBase
             Amount = "50000",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Currency = "USD",
+            IsEnabled = true,
             Period = BetaSpendLimitPeriod.Daily,
             Scope = new BetaSpendLimitUserScope("user_01WCz1FkmYMm4gnmykNKUu3Q"),
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -91,6 +96,7 @@ public class BetaSpendLimitTest : TestBase
         string expectedAmount = "50000";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "USD";
+        bool expectedIsEnabled = true;
         ApiEnum<string, BetaSpendLimitPeriod> expectedPeriod = BetaSpendLimitPeriod.Daily;
         BetaSpendLimitScope expectedScope = new BetaSpendLimitUserScope(
             "user_01WCz1FkmYMm4gnmykNKUu3Q"
@@ -102,6 +108,7 @@ public class BetaSpendLimitTest : TestBase
         Assert.Equal(expectedAmount, deserialized.Amount);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedCurrency, deserialized.Currency);
+        Assert.Equal(expectedIsEnabled, deserialized.IsEnabled);
         Assert.Equal(expectedPeriod, deserialized.Period);
         Assert.Equal(expectedScope, deserialized.Scope);
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
@@ -117,6 +124,7 @@ public class BetaSpendLimitTest : TestBase
             Amount = "50000",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Currency = "USD",
+            IsEnabled = true,
             Period = BetaSpendLimitPeriod.Daily,
             Scope = new BetaSpendLimitUserScope("user_01WCz1FkmYMm4gnmykNKUu3Q"),
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -134,6 +142,7 @@ public class BetaSpendLimitTest : TestBase
             Amount = "50000",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Currency = "USD",
+            IsEnabled = true,
             Period = BetaSpendLimitPeriod.Daily,
             Scope = new BetaSpendLimitUserScope("user_01WCz1FkmYMm4gnmykNKUu3Q"),
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),

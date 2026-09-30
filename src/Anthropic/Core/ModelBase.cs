@@ -868,6 +868,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, UserCostReport::OrderBy>(),
             new ApiEnumConverter<string, UserCostReport::Speed>(),
             new ApiEnumConverter<string, BetaSpendLimitPeriod>(),
+            new ApiEnumConverter<string, ScopeType>(),
             new ApiEnumConverter<string, Period>(),
             new ApiEnumConverter<string, BetaSpendLimitIncreaseRequestStatus>(),
             new ApiEnumConverter<string, SourceType>(),
