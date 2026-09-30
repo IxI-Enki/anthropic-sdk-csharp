@@ -70,6 +70,21 @@ public sealed record class BetaSpendLimit : JsonModel
     }
 
     /// <summary>
+    /// Read-only. `false` when extra usage is switched off for this organization
+    /// (`organization` limit) or for this member (`user` limit); `amount` is kept
+    /// and applies again when it's switched back on. Always `true` for other limits.
+    /// </summary>
+    public required bool IsEnabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_enabled");
+        }
+        init { this._rawData.Set("is_enabled", value); }
+    }
+
+    /// <summary>
     /// Length of the window the limit resets over. `amount` caps spend within each period.
     /// </summary>
     public required ApiEnum<string, BetaSpendLimitPeriod> Period
@@ -129,6 +144,7 @@ public sealed record class BetaSpendLimit : JsonModel
         _ = this.Amount;
         _ = this.CreatedAt;
         _ = this.Currency;
+        _ = this.IsEnabled;
         this.Period.Validate();
         this.Scope.Validate();
         if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("spend_limit")))

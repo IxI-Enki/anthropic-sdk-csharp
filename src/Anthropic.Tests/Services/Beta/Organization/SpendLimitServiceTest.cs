@@ -17,6 +17,16 @@ public class SpendLimitServiceTest : TestBase
     }
 
     [Fact]
+    public async Task List_Works()
+    {
+        var page = await this.client.Beta.Organization.SpendLimits.List(
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        page.Validate();
+    }
+
+    [Fact]
     public async Task Delete_Works()
     {
         var spendLimit = await this.client.Beta.Organization.SpendLimits.Delete(

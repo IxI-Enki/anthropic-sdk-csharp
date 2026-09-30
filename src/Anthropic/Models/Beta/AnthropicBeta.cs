@@ -57,6 +57,7 @@ public enum AnthropicBeta
     InlineTools2026_09_15,
     McpClient2026_09_15,
     CEPlugins2026_09_01,
+    SpendLimitReads2026_09_26,
 }
 
 sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
@@ -123,6 +124,7 @@ sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
             "inline-tools-2026-09-15" => AnthropicBeta.InlineTools2026_09_15,
             "mcp-client-2026-09-15" => AnthropicBeta.McpClient2026_09_15,
             "ce-plugins-2026-09-01" => AnthropicBeta.CEPlugins2026_09_01,
+            "spend-limit-reads-2026-09-26" => AnthropicBeta.SpendLimitReads2026_09_26,
             _ => (AnthropicBeta)(-1),
         };
     }
@@ -192,6 +194,7 @@ sealed class AnthropicBetaConverter : JsonConverter<AnthropicBeta>
                 AnthropicBeta.InlineTools2026_09_15 => "inline-tools-2026-09-15",
                 AnthropicBeta.McpClient2026_09_15 => "mcp-client-2026-09-15",
                 AnthropicBeta.CEPlugins2026_09_01 => "ce-plugins-2026-09-01",
+                AnthropicBeta.SpendLimitReads2026_09_26 => "spend-limit-reads-2026-09-26",
                 _ => throw new AnthropicInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
