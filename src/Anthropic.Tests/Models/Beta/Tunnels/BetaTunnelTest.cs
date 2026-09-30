@@ -17,7 +17,6 @@ public class BetaTunnelTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             DisplayName = "display_name",
             Domain = "domain",
-            Transport = new BetaCloudflareTunnelTransport(),
         };
 
         string expectedID = "id";
@@ -25,7 +24,6 @@ public class BetaTunnelTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedDisplayName = "display_name";
         string expectedDomain = "domain";
-        BetaTunnelTransport expectedTransport = new BetaCloudflareTunnelTransport();
         JsonElement expectedType = JsonSerializer.SerializeToElement("tunnel");
 
         Assert.Equal(expectedID, model.ID);
@@ -33,7 +31,6 @@ public class BetaTunnelTest : TestBase
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedDisplayName, model.DisplayName);
         Assert.Equal(expectedDomain, model.Domain);
-        Assert.Equal(expectedTransport, model.Transport);
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
     }
 
@@ -47,7 +44,6 @@ public class BetaTunnelTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             DisplayName = "display_name",
             Domain = "domain",
-            Transport = new BetaCloudflareTunnelTransport(),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -69,7 +65,6 @@ public class BetaTunnelTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             DisplayName = "display_name",
             Domain = "domain",
-            Transport = new BetaCloudflareTunnelTransport(),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -84,7 +79,6 @@ public class BetaTunnelTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedDisplayName = "display_name";
         string expectedDomain = "domain";
-        BetaTunnelTransport expectedTransport = new BetaCloudflareTunnelTransport();
         JsonElement expectedType = JsonSerializer.SerializeToElement("tunnel");
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -92,7 +86,6 @@ public class BetaTunnelTest : TestBase
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedDisplayName, deserialized.DisplayName);
         Assert.Equal(expectedDomain, deserialized.Domain);
-        Assert.Equal(expectedTransport, deserialized.Transport);
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
     }
 
@@ -106,7 +99,6 @@ public class BetaTunnelTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             DisplayName = "display_name",
             Domain = "domain",
-            Transport = new BetaCloudflareTunnelTransport(),
         };
 
         model.Validate();
@@ -122,7 +114,6 @@ public class BetaTunnelTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             DisplayName = "display_name",
             Domain = "domain",
-            Transport = new BetaCloudflareTunnelTransport(),
         };
 
         BetaTunnel copied = new(model);
