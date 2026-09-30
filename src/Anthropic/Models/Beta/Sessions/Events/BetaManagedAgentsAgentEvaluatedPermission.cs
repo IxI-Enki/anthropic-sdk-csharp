@@ -5,9 +5,6 @@ using System = System;
 
 namespace Anthropic.Models.Beta.Sessions.Events;
 
-/// <summary>
-/// AgentEvaluatedPermission enum
-/// </summary>
 [JsonConverter(typeof(BetaManagedAgentsAgentEvaluatedPermissionConverter))]
 public enum BetaManagedAgentsAgentEvaluatedPermission
 {

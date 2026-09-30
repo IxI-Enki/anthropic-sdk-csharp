@@ -487,9 +487,6 @@ sealed class OrderConverter : JsonConverter<Order>
     }
 }
 
-/// <summary>
-/// SessionStatus enum
-/// </summary>
 [JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
