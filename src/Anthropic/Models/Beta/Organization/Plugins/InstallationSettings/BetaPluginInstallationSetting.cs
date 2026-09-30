@@ -109,7 +109,7 @@ public sealed record class BetaPluginInstallationSetting : JsonModel
     public override void Validate()
     {
         _ = this.CreatedAt;
-        this.InstallationPreference.Raw();
+        this.InstallationPreference.Validate();
         _ = this.PluginID;
         this.Target.Validate();
         if (

@@ -172,13 +172,13 @@ public sealed record class BetaPluginMarketplace : JsonModel
     {
         _ = this.ID;
         _ = this.CreatedAt;
-        this.DefaultInstallationPreference?.Raw();
+        this.DefaultInstallationPreference?.Validate();
         _ = this.LastSyncEndedAt;
         _ = this.LastSyncReadSha;
         _ = this.Name;
         this.Owner.Validate();
-        this.Source.Raw();
-        this.SyncStatus?.Raw();
+        this.Source.Validate();
+        this.SyncStatus?.Validate();
         if (
             !JsonElement.DeepEquals(
                 this.Type,

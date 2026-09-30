@@ -305,7 +305,7 @@ public sealed record class BetaPlugin : JsonModel
         _ = this.ManifestVersion;
         _ = this.MarketplaceID;
         _ = this.Name;
-        this.OrganizationInstallationPreference?.Raw();
+        this.OrganizationInstallationPreference?.Validate();
         _ = this.OrganizationInstallationPreferenceInherited;
         this.Owner.Validate();
         this.Reach?.Validate();
