@@ -40,7 +40,11 @@ public interface IAnalyticsService
 
     Analytics::IUsageReportService UsageReport { get; }
 
+    Analytics::IUserUsageReportService UserUsageReport { get; }
+
     Analytics::ICostReportService CostReport { get; }
+
+    Analytics::IUserCostReportService UserCostReport { get; }
 }
 
 /// <summary>
@@ -72,5 +76,9 @@ public interface IAnalyticsServiceWithRawResponse
 
     Analytics::IUsageReportServiceWithRawResponse UsageReport { get; }
 
+    Analytics::IUserUsageReportServiceWithRawResponse UserUsageReport { get; }
+
     Analytics::ICostReportServiceWithRawResponse CostReport { get; }
+
+    Analytics::IUserCostReportServiceWithRawResponse UserCostReport { get; }
 }

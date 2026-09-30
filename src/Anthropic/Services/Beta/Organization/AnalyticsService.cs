@@ -36,7 +36,9 @@ public sealed class AnalyticsService : IAnalyticsService
         _skills = new(() => new Analytics::SkillService(client));
         _artifacts = new(() => new Analytics::ArtifactService(client));
         _usageReport = new(() => new Analytics::UsageReportService(client));
+        _userUsageReport = new(() => new Analytics::UserUsageReportService(client));
         _costReport = new(() => new Analytics::CostReportService(client));
+        _userCostReport = new(() => new Analytics::UserCostReportService(client));
     }
 
     readonly Lazy<Analytics::ISummaryService> _summaries;
@@ -87,10 +89,22 @@ public sealed class AnalyticsService : IAnalyticsService
         get { return _usageReport.Value; }
     }
 
+    readonly Lazy<Analytics::IUserUsageReportService> _userUsageReport;
+    public Analytics::IUserUsageReportService UserUsageReport
+    {
+        get { return _userUsageReport.Value; }
+    }
+
     readonly Lazy<Analytics::ICostReportService> _costReport;
     public Analytics::ICostReportService CostReport
     {
         get { return _costReport.Value; }
+    }
+
+    readonly Lazy<Analytics::IUserCostReportService> _userCostReport;
+    public Analytics::IUserCostReportService UserCostReport
+    {
+        get { return _userCostReport.Value; }
     }
 }
 
@@ -117,7 +131,9 @@ public sealed class AnalyticsServiceWithRawResponse : IAnalyticsServiceWithRawRe
         _skills = new(() => new Analytics::SkillServiceWithRawResponse(client));
         _artifacts = new(() => new Analytics::ArtifactServiceWithRawResponse(client));
         _usageReport = new(() => new Analytics::UsageReportServiceWithRawResponse(client));
+        _userUsageReport = new(() => new Analytics::UserUsageReportServiceWithRawResponse(client));
         _costReport = new(() => new Analytics::CostReportServiceWithRawResponse(client));
+        _userCostReport = new(() => new Analytics::UserCostReportServiceWithRawResponse(client));
     }
 
     readonly Lazy<Analytics::ISummaryServiceWithRawResponse> _summaries;
@@ -168,9 +184,21 @@ public sealed class AnalyticsServiceWithRawResponse : IAnalyticsServiceWithRawRe
         get { return _usageReport.Value; }
     }
 
+    readonly Lazy<Analytics::IUserUsageReportServiceWithRawResponse> _userUsageReport;
+    public Analytics::IUserUsageReportServiceWithRawResponse UserUsageReport
+    {
+        get { return _userUsageReport.Value; }
+    }
+
     readonly Lazy<Analytics::ICostReportServiceWithRawResponse> _costReport;
     public Analytics::ICostReportServiceWithRawResponse CostReport
     {
         get { return _costReport.Value; }
+    }
+
+    readonly Lazy<Analytics::IUserCostReportServiceWithRawResponse> _userCostReport;
+    public Analytics::IUserCostReportServiceWithRawResponse UserCostReport
+    {
+        get { return _userCostReport.Value; }
     }
 }

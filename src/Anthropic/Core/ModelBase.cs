@@ -57,8 +57,10 @@ using Shares = Anthropic.Models.Beta.Organization.Plugins.Shares;
 using Skills = Anthropic.Models.Skills;
 using Threads = Anthropic.Models.Beta.Sessions.Threads;
 using UsageReport = Anthropic.Models.Beta.Organization.Analytics.UsageReport;
+using UserCostReport = Anthropic.Models.Beta.Organization.Analytics.UserCostReport;
 using UserProfiles = Anthropic.Models.Beta.UserProfiles;
 using Users = Anthropic.Models.Organization.Users;
+using UserUsageReport = Anthropic.Models.Beta.Organization.Analytics.UserUsageReport;
 using Vaults = Anthropic.Models.Beta.Vaults;
 using Workspaces = Anthropic.Models.Beta.Organization.Workspaces;
 using WorkspacesRateLimits = Anthropic.Models.Beta.Organization.Workspaces.RateLimits;
@@ -828,12 +830,16 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, InferenceGeo>(),
             new ApiEnumConverter<string, Speed>(),
             new ApiEnumConverter<string, BetaAnalyticsCostType>(),
+            new ApiEnumConverter<string, BetaAnalyticsCostUsersItemInferenceGeo>(),
+            new ApiEnumConverter<string, BetaAnalyticsCostUsersItemSpeed>(),
             new ApiEnumConverter<string, BetaAnalyticsInferenceGeoFilter>(),
             new ApiEnumConverter<string, BetaAnalyticsProductFilter>(),
             new ApiEnumConverter<string, ShareStatus>(),
             new ApiEnumConverter<string, BetaAnalyticsTokenType>(),
             new ApiEnumConverter<string, BetaAnalyticsUsageBucketedResultInferenceGeo>(),
             new ApiEnumConverter<string, BetaAnalyticsUsageBucketedResultSpeed>(),
+            new ApiEnumConverter<string, BetaAnalyticsUsageUsersItemInferenceGeo>(),
+            new ApiEnumConverter<string, BetaAnalyticsUsageUsersItemSpeed>(),
             new ApiEnumConverter<string, GroupBy>(),
             new ApiEnumConverter<string, Order>(),
             new ApiEnumConverter<string, Projects::GroupBy>(),
@@ -848,9 +854,19 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, UsageReport::BucketWidth>(),
             new ApiEnumConverter<string, UsageReport::GroupBy>(),
             new ApiEnumConverter<string, UsageReport::Speed>(),
+            new ApiEnumConverter<string, UserUsageReport::BucketWidth>(),
+            new ApiEnumConverter<string, UserUsageReport::GroupBy>(),
+            new ApiEnumConverter<string, UserUsageReport::Order>(),
+            new ApiEnumConverter<string, UserUsageReport::OrderBy>(),
+            new ApiEnumConverter<string, UserUsageReport::Speed>(),
             new ApiEnumConverter<string, CostReport::BucketWidth>(),
             new ApiEnumConverter<string, CostReport::GroupBy>(),
             new ApiEnumConverter<string, CostReport::Speed>(),
+            new ApiEnumConverter<string, UserCostReport::BucketWidth>(),
+            new ApiEnumConverter<string, UserCostReport::GroupBy>(),
+            new ApiEnumConverter<string, UserCostReport::Order>(),
+            new ApiEnumConverter<string, UserCostReport::OrderBy>(),
+            new ApiEnumConverter<string, UserCostReport::Speed>(),
             new ApiEnumConverter<string, BetaSpendLimitPeriod>(),
             new ApiEnumConverter<string, Period>(),
             new ApiEnumConverter<string, BetaSpendLimitIncreaseRequestStatus>(),
